@@ -42,7 +42,7 @@ public class EntityFanta extends EntityCreature
 
 		return bob;
 	}
-   
+	
 	protected String getHurtSound() 
 	{
 		return "fantabob.fantahurt";

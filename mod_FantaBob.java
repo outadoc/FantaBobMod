@@ -12,20 +12,20 @@ public class mod_FantaBob extends BaseMod
 	public mod_FantaBob()
     {
 		//enregistrement des mobs
-		ModLoader.RegisterEntityID(EntityBob.class, "Boblennon", 62);
-        ModLoader.RegisterEntityID(EntityFanta.class, "TheFantasio974", 63);
-        ModLoader.RegisterEntityID(EntityJeanKevin.class, "JeanKevin", 64);
-        ModLoader.RegisterEntityID(EntityBotlennon.class, "Botlennon", 65);
+		ModLoader.RegisterEntityID(EntityBob.class, "Boblennon", ModLoader.getUniqueEntityId());
+        ModLoader.RegisterEntityID(EntityFanta.class, "TheFantasio974", ModLoader.getUniqueEntityId());
+        ModLoader.RegisterEntityID(EntityJeanKevin.class, "JeanKevin", ModLoader.getUniqueEntityId());
+        ModLoader.RegisterEntityID(EntityBotlennon.class, "Botlennon", ModLoader.getUniqueEntityId());
         
         //enregistrement des objets
-        ModLoader.RegisterEntityID(ItemObsidianToothBrush.class, "ToothBrush", 66);
-        ModLoader.RegisterEntityID(ItemStampCollection.class, "StampCollection", 67);
+        ModLoader.RegisterEntityID(ItemObsidianToothBrush.class, "ToothBrush", ModLoader.getUniqueEntityId());
+        ModLoader.RegisterEntityID(ItemStampCollection.class, "StampCollection", ModLoader.getUniqueEntityId());
 
         //paramètrage du spawn des mobs
-        ModLoader.AddSpawn(EntityBob.class, 12, EnumCreatureType.creature);
-        ModLoader.AddSpawn(EntityFanta.class, 12, EnumCreatureType.creature);
-        ModLoader.AddSpawn(EntityJeanKevin.class, 12, EnumCreatureType.creature);
-        ModLoader.AddSpawn(EntityBotlennon.class, 10, EnumCreatureType.monster);
+        ModLoader.AddSpawn(EntityBob.class, 9, EnumCreatureType.creature);
+        ModLoader.AddSpawn(EntityFanta.class, 9, EnumCreatureType.creature);
+        ModLoader.AddSpawn(EntityJeanKevin.class, 40, EnumCreatureType.creature);
+        ModLoader.AddSpawn(EntityBotlennon.class, 9, EnumCreatureType.monster);
         
         //ajout de l'armure personnalisée
         ModLoader.AddArmor("fantabob");
