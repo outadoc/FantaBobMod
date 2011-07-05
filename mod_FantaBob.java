@@ -6,7 +6,7 @@ public class mod_FantaBob extends BaseMod
 {
     public String Version()
     {
-        return "1.6.6";
+        return "1.7.2";
     } 
     
 	public mod_FantaBob()
@@ -24,11 +24,12 @@ public class mod_FantaBob extends BaseMod
         //paramètrage du spawn des mobs
         ModLoader.AddSpawn(EntityBob.class, 9, EnumCreatureType.creature);
         ModLoader.AddSpawn(EntityFanta.class, 9, EnumCreatureType.creature);
-        ModLoader.AddSpawn(EntityJeanKevin.class, 40, EnumCreatureType.creature);
+        ModLoader.AddSpawn(EntityJeanKevin.class, 10, EnumCreatureType.creature);
         ModLoader.AddSpawn(EntityBotlennon.class, 9, EnumCreatureType.monster);
         
-        //ajout de l'armure personnalisée
+        //ajout des armures personnalisées
         ModLoader.AddArmor("fantabob");
+        ModLoader.AddArmor("fantabob2");
         
         //instanciation des objets
         fantaGlasses = (new ItemArmor(144, 3, 5, 0))
@@ -46,6 +47,9 @@ public class mod_FantaBob extends BaseMod
         bambooSword = (new ItemSword(404, EnumToolMaterial.WOOD))
         	.setItemName("BambooSword")
         	.setIconIndex(ModLoader.addOverride("/gui/items.png", "/fantabob/bamboo_sword.png"));
+        hairPotion = (new ItemArmor(149, 3, 6, 0))
+    		.setItemName("HairPotion")
+    		.setIconIndex(ModLoader.addOverride("/gui/items.png", "/fantabob/hair_potion.png"));
         
         //recettes de craft
         ModLoader.AddRecipe(new ItemStack(fantaGlasses, 1), new Object[]
@@ -58,6 +62,8 @@ public class mod_FantaBob extends BaseMod
             {"#XX", "#XX", "#XX", Character.valueOf('#'), Item.book, Character.valueOf('X'), Item.paper});
         ModLoader.AddRecipe(new ItemStack(bambooSword, 1), new Object[]
             {"#", "#", "X", Character.valueOf('#'), Item.reed, Character.valueOf('X'), Item.stick});
+        ModLoader.AddRecipe(new ItemStack(hairPotion, 1), new Object[]
+            {"###", "# #", Character.valueOf('#'), Block.cloth});
         
         //ajout du nom des objets
         ModLoader.AddName(fantaGlasses, "Lunettes de Fantasio");
@@ -65,6 +71,7 @@ public class mod_FantaBob extends BaseMod
         ModLoader.AddName(toothBrush, "Brosse à dents en obsidienne");
         ModLoader.AddName(stampCollection, "Collection de timbres");
         ModLoader.AddName(bambooSword, "Épée en bambou");
+        ModLoader.AddName(hairPotion, "Lotion capillaire de Papy Lennon");
     }
 	
 	public void AddRenderer(Map map)
@@ -81,4 +88,5 @@ public class mod_FantaBob extends BaseMod
     public static Item toothBrush;
     public static Item stampCollection;
     public static Item bambooSword;
+    public static Item hairPotion;
 }
