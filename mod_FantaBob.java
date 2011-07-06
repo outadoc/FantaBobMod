@@ -16,10 +16,6 @@ public class mod_FantaBob extends BaseMod
         ModLoader.RegisterEntityID(EntityFanta.class, "TheFantasio974", ModLoader.getUniqueEntityId());
         ModLoader.RegisterEntityID(EntityJeanKevin.class, "JeanKevin", ModLoader.getUniqueEntityId());
         ModLoader.RegisterEntityID(EntityBotlennon.class, "Botlennon", ModLoader.getUniqueEntityId());
-        
-        //enregistrement des objets
-        ModLoader.RegisterEntityID(ItemObsidianToothBrush.class, "ToothBrush", ModLoader.getUniqueEntityId());
-        ModLoader.RegisterEntityID(ItemStampCollection.class, "StampCollection", ModLoader.getUniqueEntityId());
 
         //paramètrage du spawn des mobs
         ModLoader.AddSpawn(EntityBob.class, 9, EnumCreatureType.creature);
@@ -33,23 +29,36 @@ public class mod_FantaBob extends BaseMod
         
         //instanciation des objets
         fantaGlasses = (new ItemArmor(144, 3, 5, 0))
-        	.setItemName("FantaGlasses")
+        	.setItemName("fantaGlasses")
         	.setIconIndex(ModLoader.addOverride("/gui/items.png", "/fantabob/glasses.png"));
         cobbleTie = (new ItemArmor(145, 3, 5, 1))
-        	.setItemName("CobbleTie")
+        	.setItemName("cobbleTie")
         	.setIconIndex(ModLoader.addOverride("/gui/items.png", "/fantabob/cobble_tie.png"));
         toothBrush = (new ItemObsidianToothBrush(402))
-        	.setItemName("ToothBrush")
+        	.setItemName("toothBrush")
         	.setIconIndex(ModLoader.addOverride("/gui/items.png", "/fantabob/obsi_toothbrush.png"));
         stampCollection = (new ItemStampCollection(403))
-    		.setItemName("StampCollection")
+    		.setItemName("stampCollection")
     		.setIconIndex(ModLoader.addOverride("/gui/items.png", "/fantabob/stamp_collection.png"));
         bambooSword = (new ItemSword(404, EnumToolMaterial.WOOD))
-        	.setItemName("BambooSword")
+        	.setItemName("bambooSword")
         	.setIconIndex(ModLoader.addOverride("/gui/items.png", "/fantabob/bamboo_sword.png"));
         hairPotion = (new ItemArmor(149, 3, 6, 0))
-    		.setItemName("HairPotion")
+    		.setItemName("hairPotion")
     		.setIconIndex(ModLoader.addOverride("/gui/items.png", "/fantabob/hair_potion.png"));
+        bouse = new BlockBouse(120, 0)
+        	.setHardness(0.6F)
+        	.setResistance(4.0F)
+        	.setBlockName("bouse")
+        	.setStepSound(new StepSound("bouse", 3.0F, 1.0F));
+        bouse.blockIndexInTexture = ModLoader.addOverride("/terrain.png", "/fantabob/bouse.png");
+        
+        //enregistrement des objets
+        ModLoader.RegisterEntityID(ItemObsidianToothBrush.class, "ToothBrush", ModLoader.getUniqueEntityId());
+        ModLoader.RegisterEntityID(ItemStampCollection.class, "StampCollection", ModLoader.getUniqueEntityId());
+        
+        //enregistrement des blocs
+        ModLoader.RegisterBlock(bouse);
         
         //recettes de craft
         ModLoader.AddRecipe(new ItemStack(fantaGlasses, 1), new Object[]
@@ -64,14 +73,17 @@ public class mod_FantaBob extends BaseMod
             {"#", "#", "X", Character.valueOf('#'), Item.reed, Character.valueOf('X'), Item.stick});
         ModLoader.AddRecipe(new ItemStack(hairPotion, 1), new Object[]
             {"###", "# #", Character.valueOf('#'), Block.cloth});
+        ModLoader.AddRecipe(new ItemStack(bouse, 3), new Object[]
+            {"X", "#", Character.valueOf('#'), Block.dirt, Character.valueOf('X'), Item.bucketWater});
         
-        //ajout du nom des objets
+        //ajout du nom des blocs/objets
         ModLoader.AddName(fantaGlasses, "Lunettes de Fantasio");
         ModLoader.AddName(cobbleTie, "Cravate en cobble");
         ModLoader.AddName(toothBrush, "Brosse à dents en obsidienne");
         ModLoader.AddName(stampCollection, "Collection de timbres");
         ModLoader.AddName(bambooSword, "Épée en bambou");
         ModLoader.AddName(hairPotion, "Lotion capillaire de Papy Lennon");
+        ModLoader.AddName(bouse, "Bouse");
     }
 	
 	public void AddRenderer(Map map)
@@ -89,4 +101,5 @@ public class mod_FantaBob extends BaseMod
     public static Item stampCollection;
     public static Item bambooSword;
     public static Item hairPotion;
+    public static Block bouse;
 }
