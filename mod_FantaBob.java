@@ -9,6 +9,12 @@ public class mod_FantaBob extends BaseMod
         return "1.7.2";
     } 
     
+    /*
+     * IDs:
+     * items: 400 à 407
+     * blocs: 120
+     */
+    
 	public mod_FantaBob()
     {
 		//enregistrement des mobs
@@ -56,6 +62,9 @@ public class mod_FantaBob extends BaseMod
         	.setItemName("magabondChop")
         	.setMaxStackSize(64)
         	.setIconCoord(7, 5);
+        magabondRecord = (new ItemRecord(407, "ATE BITS - Magabond"))
+        	.setIconIndex(ModLoader.addOverride("/gui/items.png", "/fantabob/magabond_record.png"))
+        	.setItemName("magabondRecord");
         
         //enregistrement des objets
         ModLoader.RegisterEntityID(ItemObsidianToothBrush.class, "ToothBrush", ModLoader.getUniqueEntityId());
@@ -79,6 +88,8 @@ public class mod_FantaBob extends BaseMod
             {"###", "# #", Character.valueOf('#'), Block.cloth});
         ModLoader.AddRecipe(new ItemStack(bouse, 3), new Object[]
             {"X", "#", Character.valueOf('#'), Block.dirt, Character.valueOf('X'), Item.bucketWater});
+        ModLoader.AddRecipe(new ItemStack(magabondRecord, 1), new Object[]
+            {" # ", "#X#", " # ", Character.valueOf('#'), magabondChop, Character.valueOf('X'), Item.redstone});
         
         //ajout du nom des blocs/objets
         ModLoader.AddName(fantaGlasses, "Lunettes de Fantasio");
@@ -89,6 +100,7 @@ public class mod_FantaBob extends BaseMod
         ModLoader.AddName(hairPotion, "Lotion capillaire de Papy Lennon");
         ModLoader.AddName(bouse, "Bouse");
         ModLoader.AddName(magabondChop, "Côtelette de magabond");
+        ModLoader.AddName(magabondRecord, "Magabond Remix");
     }
 	
 	public void AddRenderer(Map map)
@@ -107,6 +119,7 @@ public class mod_FantaBob extends BaseMod
     public static Item bambooSword;
     public static Item hairPotion;
     public static Item magabondChop;
+    public static Item magabondRecord;
     
     //déclaration des blocs
     public static Block bouse;
