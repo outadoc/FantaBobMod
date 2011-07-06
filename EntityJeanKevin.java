@@ -10,7 +10,7 @@ public class EntityJeanKevin extends EntityCreature
 	
 	protected int getDropItemId()
 	{
-		return Block.dirt.blockID;
+		return mod_FantaBob.magabondChop.shiftedIndex;
 	}
 	
 	public ItemStack getHeldItem()

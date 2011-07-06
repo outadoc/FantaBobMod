@@ -52,6 +52,10 @@ public class mod_FantaBob extends BaseMod
         	.setBlockName("bouse")
         	.setStepSound(new StepSound("bouse", 3.0F, 1.0F));
         bouse.blockIndexInTexture = ModLoader.addOverride("/terrain.png", "/fantabob/bouse.png");
+        magabondChop = new ItemFood(406, 6, true)
+        	.setItemName("magabondChop")
+        	.setMaxStackSize(64)
+        	.setIconCoord(7, 5);
         
         //enregistrement des objets
         ModLoader.RegisterEntityID(ItemObsidianToothBrush.class, "ToothBrush", ModLoader.getUniqueEntityId());
@@ -84,6 +88,7 @@ public class mod_FantaBob extends BaseMod
         ModLoader.AddName(bambooSword, "Épée en bambou");
         ModLoader.AddName(hairPotion, "Lotion capillaire de Papy Lennon");
         ModLoader.AddName(bouse, "Bouse");
+        ModLoader.AddName(magabondChop, "Côtelette de magabond");
     }
 	
 	public void AddRenderer(Map map)
@@ -101,5 +106,8 @@ public class mod_FantaBob extends BaseMod
     public static Item stampCollection;
     public static Item bambooSword;
     public static Item hairPotion;
+    public static Item magabondChop;
+    
+    //déclaration des blocs
     public static Block bouse;
 }
