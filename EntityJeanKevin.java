@@ -37,6 +37,7 @@ public class EntityJeanKevin extends EntityCreature
             {
                 d1 = d2;
                 player = (EntityPlayer)entity1;
+                ModLoader.getMinecraftInstance().thePlayer.triggerAchievement(mod_FantaBob.floodAch);
             }
         }
 
@@ -56,5 +57,16 @@ public class EntityJeanKevin extends EntityCreature
  	protected String getLivingSound() 
  	{
  		return "fantabob.kevin";
+ 	}
+ 	
+ 	public void onDeath(Entity entity) 
+ 	{
+ 		super.onDeath(entity);
+ 		ModLoader.getMinecraftInstance().thePlayer.triggerAchievement(mod_FantaBob.killJeanKevinAch);
+ 	}
+ 	
+ 	public int getMaxSpawnedInChunk()
+ 	{
+ 		return 3;
  	}
 }

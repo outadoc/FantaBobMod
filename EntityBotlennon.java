@@ -22,4 +22,10 @@ public class EntityBotlennon extends EntityMob
 	{
 		return "fantabob.botlennon";
 	}
+	
+	public void onDeath(Entity entity) 
+ 	{
+ 		super.onDeath(entity);
+ 		ModLoader.getMinecraftInstance().thePlayer.triggerAchievement(mod_FantaBob.killBotlennonAch);
+ 	}
 }

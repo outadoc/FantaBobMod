@@ -2,6 +2,8 @@ package net.minecraft.src;
 
 import java.util.Map;
 
+import net.minecraft.client.Minecraft;
+
 public class mod_FantaBob extends BaseMod
 {
     public String Version()
@@ -13,6 +15,7 @@ public class mod_FantaBob extends BaseMod
      * IDs:
      * items: 400 à 407
      * blocs: 120
+     * achievements: 888 à 901
      */
     
 	public mod_FantaBob()
@@ -36,6 +39,7 @@ public class mod_FantaBob extends BaseMod
         //instanciation des objets
         fantaGlasses = (new ItemArmor(144, 3, 5, 0))
         	.setItemName("fantaGlasses")
+        	.setMaxStackSize(64)
         	.setIconIndex(ModLoader.addOverride("/gui/items.png", "/fantabob/glasses.png"));
         cobbleTie = (new ItemArmor(145, 3, 5, 1))
         	.setItemName("cobbleTie")
@@ -43,7 +47,7 @@ public class mod_FantaBob extends BaseMod
         toothBrush = (new ItemObsidianToothBrush(402))
         	.setItemName("toothBrush")
         	.setIconIndex(ModLoader.addOverride("/gui/items.png", "/fantabob/obsi_toothbrush.png"));
-        stampCollection = (new ItemStampCollection(403))
+        stampCollection = (new Item(403))
     		.setItemName("stampCollection")
     		.setIconIndex(ModLoader.addOverride("/gui/items.png", "/fantabob/stamp_collection.png"));
         bambooSword = (new ItemSword(404, EnumToolMaterial.WOOD))
@@ -66,9 +70,8 @@ public class mod_FantaBob extends BaseMod
         	.setIconIndex(ModLoader.addOverride("/gui/items.png", "/fantabob/magabond_record.png"))
         	.setItemName("magabondRecord");
         
-        //enregistrement des objets
+        //enregistrement des objets spéciaux
         ModLoader.RegisterEntityID(ItemObsidianToothBrush.class, "ToothBrush", ModLoader.getUniqueEntityId());
-        ModLoader.RegisterEntityID(ItemStampCollection.class, "StampCollection", ModLoader.getUniqueEntityId());
         
         //enregistrement des blocs
         ModLoader.RegisterBlock(bouse);
@@ -101,7 +104,59 @@ public class mod_FantaBob extends BaseMod
         ModLoader.AddName(bouse, "Bouse");
         ModLoader.AddName(magabondChop, "Côtelette de magabond");
         ModLoader.AddName(magabondRecord, "Magabond Remix");
+        
+        //ajout des achievements
+        killBobAch = new Achievement(888, "killBobAch", -2, 3, Block.cobblestone, AchievementList.openInventory).registerAchievement();
+        killFantaAch = new Achievement(889, "killFantaAch", -2, -1, Item.swordWood, AchievementList.openInventory).registerAchievement();
+        killJeanKevinAch = new Achievement(890, "killJeanKevinAch", -2, -4, Item.arrow, AchievementList.openInventory).registerAchievement();
+        floodAch = new Achievement(891, "floodAch", -4, 0, Item.bucketLava, AchievementList.openInventory).registerAchievement();
+        killBotlennonAch = new Achievement(892, "killBotlennonAch", -2, 1, Item.ingotIron, AchievementList.openInventory).registerAchievement();
+        getBouseAch = new Achievement(893, "getBouseAch", -5, 2, bouse, AchievementList.openInventory).registerAchievement();
+        brushTeethAch = new Achievement(894, "brushTeethAch", 0, -5, toothBrush, AchievementList.openInventory).registerAchievement();
+        getHairPotionAch = new Achievement(895, "getHairPotionAch", -3, 4, hairPotion, AchievementList.openInventory).registerAchievement();
+        getStampCollectionAch = new Achievement(896, "getStampCollectionAch", 1, -2, stampCollection, AchievementList.openInventory).registerAchievement();
+        getCobbleTieAch = new Achievement(897, "getCobbleTieAch", -7, -6, cobbleTie, AchievementList.openInventory).registerAchievement();
+        getMagabondChopAch = new Achievement(898, "getMagabondChopAch", -5, -3, magabondChop, killJeanKevinAch).registerAchievement();
+        craftMagabondRecAch = new Achievement(899, "craftMagabondRecAch", -5, -5, magabondRecord, getMagabondChopAch).registerAchievement();
+        getFantaGlassesAch = new Achievement(900, "getFantaGlassesAch", -4, -2, fantaGlasses, killFantaAch).registerAchievement();
+        getBambooSwordAch = new Achievement(901, "getBambooSwordAch", -3, -7, bambooSword, AchievementList.openInventory).registerAchievement();
+        
+        //descriptions des achievements
+        ModLoader.AddAchievementDesc(craftMagabondRecAch, "Magabooond", "Crafter un magabond remix");
+        ModLoader.AddAchievementDesc(getFantaGlassesAch, "Binoclard", "Récupérer les lunettes de Fantasio");
+        ModLoader.AddAchievementDesc(killBobAch, "Bob Lennon Hater", "Tuer Bob Lennon");
+        ModLoader.AddAchievementDesc(killFantaAch, "Spirou", "Tuer Fantasio");
+        ModLoader.AddAchievementDesc(killJeanKevinAch, "Sauveur de l'humanité", "Tuer Jean-Kévin");
+        ModLoader.AddAchievementDesc(floodAch, "Flooooood !", "Etre suivi par Jean-Kévin");
+        ModLoader.AddAchievementDesc(killBotlennonAch, "Tas de ferraille", "Tuer Botlennon");
+        ModLoader.AddAchievementDesc(getBouseAch, "Élément naturel", "Crafter de la bouse");
+        ModLoader.AddAchievementDesc(brushTeethAch, "Hygiène dentaire", "Se brosser les dents");
+        ModLoader.AddAchievementDesc(getHairPotionAch, "Crâne rasé", "Crafter une lotion capillaire");
+        ModLoader.AddAchievementDesc(getStampCollectionAch, "Philatéliste", "Crafter une collection de timbres");
+        ModLoader.AddAchievementDesc(getMagabondChopAch, "Repas avarié", "Obtenir une côtelette de magabond");
+        ModLoader.AddAchievementDesc(getCobbleTieAch, "Bonjour patron", "Crafter une cravate en cobble");
+        ModLoader.AddAchievementDesc(getBambooSwordAch, "Assassin au naturel", "Crafter une épée en bambou");
     }
+	
+	public void TakenFromCrafting(EntityPlayer entityplayer, ItemStack itemstack)
+    {
+        if(itemstack.itemID == magabondRecord.shiftedIndex)
+        	entityplayer.triggerAchievement(craftMagabondRecAch);
+        else if(itemstack.itemID == bouse.blockID)
+			entityplayer.triggerAchievement(getBouseAch);
+        else if(itemstack.itemID == hairPotion.shiftedIndex)
+        	entityplayer.triggerAchievement(getHairPotionAch);
+        else if(itemstack.itemID == bambooSword.shiftedIndex)
+        	entityplayer.triggerAchievement(getBambooSwordAch);
+    }
+	
+	public void OnItemPickup(EntityPlayer entityplayer, ItemStack itemstack) 
+	{
+		if(itemstack.itemID == fantaGlasses.shiftedIndex)
+			entityplayer.triggerAchievement(getFantaGlassesAch);
+		else if(itemstack.itemID == magabondChop.shiftedIndex)
+        	entityplayer.triggerAchievement(getMagabondChopAch);
+	}
 	
 	public void AddRenderer(Map map)
     {
@@ -120,6 +175,22 @@ public class mod_FantaBob extends BaseMod
     public static Item hairPotion;
     public static Item magabondChop;
     public static Item magabondRecord;
+    
+    //déclaration des achievements
+    public static Achievement craftMagabondRecAch;
+    public static Achievement getFantaGlassesAch;
+    public static Achievement killBobAch;
+    public static Achievement killFantaAch;
+    public static Achievement killJeanKevinAch;
+    public static Achievement floodAch;
+    public static Achievement killBotlennonAch;
+    public static Achievement getBouseAch;
+    public static Achievement brushTeethAch;
+    public static Achievement getHairPotionAch;
+    public static Achievement getStampCollectionAch;
+    public static Achievement getMagabondChopAch;
+    public static Achievement getCobbleTieAch;
+    public static Achievement getBambooSwordAch;
     
     //déclaration des blocs
     public static Block bouse;

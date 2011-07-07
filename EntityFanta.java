@@ -57,4 +57,15 @@ public class EntityFanta extends EntityCreature
 	{
 		return "fantabob.fanta";
 	}
+	
+	public void onDeath(Entity entity) 
+ 	{
+ 		super.onDeath(entity);
+ 		ModLoader.getMinecraftInstance().thePlayer.triggerAchievement(mod_FantaBob.killFantaAch);
+ 	}
+	
+	public int getMaxSpawnedInChunk() 
+	{
+		return 1;
+	}
 }
