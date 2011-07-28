@@ -157,6 +157,17 @@ public class EntityBob extends EntityCreature
         }
         return true;
     }
+    
+    public boolean isFollowed()
+    {
+    	return followed;
+    }
+    
+    public void setFollowed(boolean followed)
+    {
+    	this.followed = followed;
+    }
 
+    private boolean followed;
 	protected int attackStrength;
 }

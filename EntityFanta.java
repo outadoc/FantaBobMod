@@ -37,6 +37,16 @@ public class EntityFanta extends EntityCreature
 			{
 				d1 = d2;
 				bob = (EntityBob)entity1;
+				
+				if(bob.isFollowed())
+				{
+					bob = null;
+					continue;
+				}
+				else
+				{
+					bob.setFollowed(true);
+				}
 			}
 		}
 
