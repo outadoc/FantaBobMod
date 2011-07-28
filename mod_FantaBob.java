@@ -15,7 +15,7 @@ public class mod_FantaBob extends BaseMod
      * IDs:
      * items: 400 à 407
      * blocs: 120
-     * achievements: 888 à 901
+     * achievements: 887 à 901
      */
     
 	public mod_FantaBob()
@@ -106,22 +106,24 @@ public class mod_FantaBob extends BaseMod
         ModLoader.AddName(magabondRecord, "Magabond Remix");
         
         //ajout des achievements
-        killBobAch = new Achievement(888, "killBobAch", -2, 3, Block.cobblestone, AchievementList.openInventory).registerAchievement();
-        killFantaAch = new Achievement(889, "killFantaAch", -2, -1, Item.swordWood, AchievementList.openInventory).registerAchievement();
-        killJeanKevinAch = new Achievement(890, "killJeanKevinAch", -2, -4, Item.arrow, AchievementList.openInventory).registerAchievement();
-        floodAch = new Achievement(891, "floodAch", -4, 0, Item.bucketLava, AchievementList.openInventory).registerAchievement();
-        killBotlennonAch = new Achievement(892, "killBotlennonAch", -2, 1, Item.ingotIron, AchievementList.openInventory).registerAchievement();
-        getBouseAch = new Achievement(893, "getBouseAch", -5, 2, bouse, AchievementList.openInventory).registerAchievement();
-        brushTeethAch = new Achievement(894, "brushTeethAch", 0, -5, toothBrush, AchievementList.openInventory).registerAchievement();
-        getHairPotionAch = new Achievement(895, "getHairPotionAch", -3, 4, hairPotion, AchievementList.openInventory).registerAchievement();
-        getStampCollectionAch = new Achievement(896, "getStampCollectionAch", 1, -2, stampCollection, AchievementList.openInventory).registerAchievement();
-        getCobbleTieAch = new Achievement(897, "getCobbleTieAch", -7, -6, cobbleTie, AchievementList.openInventory).registerAchievement();
+        installModAch = new Achievement(887, "installModAch", -2, 0, Item.paper, AchievementList.openInventory).registerAchievement();
+        killBobAch = new Achievement(888, "killBobAch", -2, 3, Block.cobblestone, installModAch).registerAchievement();
+        killFantaAch = new Achievement(889, "killFantaAch", -2, -1, Item.swordWood, installModAch).registerAchievement();
+        killJeanKevinAch = new Achievement(890, "killJeanKevinAch", -2, -4, Item.arrow, installModAch).registerAchievement();
+        floodAch = new Achievement(891, "floodAch", -4, 0, Item.bucketLava, installModAch).registerAchievement();
+        killBotlennonAch = new Achievement(892, "killBotlennonAch", -2, 1, Item.ingotIron, installModAch).registerAchievement();
+        getBouseAch = new Achievement(893, "getBouseAch", -5, 2, bouse, installModAch).registerAchievement();
+        brushTeethAch = new Achievement(894, "brushTeethAch", 0, -5, toothBrush, installModAch).registerAchievement();
+        getHairPotionAch = new Achievement(895, "getHairPotionAch", -3, 4, hairPotion, installModAch).registerAchievement();
+        getStampCollectionAch = new Achievement(896, "getStampCollectionAch", 1, -2, stampCollection, installModAch).registerAchievement();
+        getCobbleTieAch = new Achievement(897, "getCobbleTieAch", -7, -6, cobbleTie, installModAch).registerAchievement();
         getMagabondChopAch = new Achievement(898, "getMagabondChopAch", -5, -3, magabondChop, killJeanKevinAch).registerAchievement();
         craftMagabondRecAch = new Achievement(899, "craftMagabondRecAch", -5, -5, magabondRecord, getMagabondChopAch).registerAchievement();
         getFantaGlassesAch = new Achievement(900, "getFantaGlassesAch", -4, -2, fantaGlasses, killFantaAch).registerAchievement();
-        getBambooSwordAch = new Achievement(901, "getBambooSwordAch", -3, -7, bambooSword, AchievementList.openInventory).registerAchievement();
+        getBambooSwordAch = new Achievement(901, "getBambooSwordAch", -3, -7, bambooSword, installModAch).registerAchievement();
         
         //descriptions des achievements
+        ModLoader.AddAchievementDesc(installModAch, "Youtuber", "Installer le mod FantaBobShow");
         ModLoader.AddAchievementDesc(craftMagabondRecAch, "Magabooond", "Crafter un magabond remix");
         ModLoader.AddAchievementDesc(getFantaGlassesAch, "Binoclard", "Récupérer les lunettes de Fantasio");
         ModLoader.AddAchievementDesc(killBobAch, "Bob Lennon Hater", "Tuer Bob Lennon");
@@ -136,6 +138,9 @@ public class mod_FantaBob extends BaseMod
         ModLoader.AddAchievementDesc(getMagabondChopAch, "Repas avarié", "Obtenir une côtelette de magabond");
         ModLoader.AddAchievementDesc(getCobbleTieAch, "Bonjour patron", "Crafter une cravate en cobble");
         ModLoader.AddAchievementDesc(getBambooSwordAch, "Assassin au naturel", "Crafter une épée en bambou");
+        
+        //pour le onTickInGame()
+        ModLoader.SetInGameHook(this, true, false);
     }
 	
 	public void TakenFromCrafting(EntityPlayer entityplayer, ItemStack itemstack)
@@ -158,6 +163,12 @@ public class mod_FantaBob extends BaseMod
         	entityplayer.triggerAchievement(getMagabondChopAch);
 	}
 	
+	public boolean OnTickInGame(Minecraft minecraft) 
+	{
+		minecraft.thePlayer.triggerAchievement(installModAch);
+		return true;
+	}
+	
 	public void AddRenderer(Map map)
     {
         map.put(EntityBob.class, new RenderBiped(new ModelBiped(), 0.5F));
@@ -177,6 +188,7 @@ public class mod_FantaBob extends BaseMod
     public static Item magabondRecord;
     
     //déclaration des achievements
+    public static Achievement installModAch;
     public static Achievement craftMagabondRecAch;
     public static Achievement getFantaGlassesAch;
     public static Achievement killBobAch;
