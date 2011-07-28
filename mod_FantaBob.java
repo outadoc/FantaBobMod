@@ -88,7 +88,7 @@ public class mod_FantaBob extends BaseMod
         ModLoader.AddRecipe(new ItemStack(bambooSword, 1), new Object[]
             {"#", "#", "X", Character.valueOf('#'), Item.reed, Character.valueOf('X'), Item.stick});
         ModLoader.AddRecipe(new ItemStack(hairPotion, 1), new Object[]
-            {"###", "# #", Character.valueOf('#'), Block.cloth});
+            {"#", "#X#", "#", Character.valueOf('#'), Block.glass, Character.valueOf('X'), Item.redstone});
         ModLoader.AddRecipe(new ItemStack(bouse, 3), new Object[]
             {"X", "#", Character.valueOf('#'), Block.dirt, Character.valueOf('X'), Item.bucketWater});
         ModLoader.AddRecipe(new ItemStack(magabondRecord, 1), new Object[]
