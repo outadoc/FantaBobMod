@@ -67,12 +67,6 @@ public class EntityBob extends EntityCreature
 		return "fantabob.bob";
 	}
 	
-	public void onDeath(Entity entity) 
- 	{
- 		super.onDeath(entity);
- 		ModLoader.getMinecraftInstance().thePlayer.triggerAchievement(mod_FantaBob.killBobAch);
- 	}
-	
 	public int getMaxSpawnedInChunk() 
 	{
 		return 1;
@@ -148,6 +142,10 @@ public class EntityBob extends EntityCreature
             if(flag)
             {
                 worldObj.playSoundAtEntity(this, getDeathSound(), getSoundVolume(), 1.0F);
+            }
+            if(entity instanceof EntityPlayer)
+            {
+            	ModLoader.getMinecraftInstance().thePlayer.triggerAchievement(mod_FantaBob.killBobAch);
             }
             onDeath(entity);
         } else

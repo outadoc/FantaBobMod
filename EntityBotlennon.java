@@ -23,11 +23,6 @@ public class EntityBotlennon extends EntityMob
 		return "fantabob.botlennon";
 	}
 	
-	public void onDeath(Entity entity) 
- 	{
- 		super.onDeath(entity);
- 		ModLoader.getMinecraftInstance().thePlayer.triggerAchievement(mod_FantaBob.killBotlennonAch);
- 	}
 	
     public void playLivingSound()
     {
@@ -94,6 +89,10 @@ public class EntityBotlennon extends EntityMob
             if(flag)
             {
                 worldObj.playSoundAtEntity(this, getDeathSound(), getSoundVolume(), 1.0F);
+            }
+            if(entity instanceof EntityPlayer)
+            {
+            	ModLoader.getMinecraftInstance().thePlayer.triggerAchievement(mod_FantaBob.killBotlennonAch);
             }
             onDeath(entity);
         } else
