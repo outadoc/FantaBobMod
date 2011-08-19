@@ -1,4 +1,8 @@
 package net.minecraft.src;
+
+import java.util.Random;
+
+import net.minecraft.client.Minecraft;
  
 public class EntityBob extends EntityCreature
 {
@@ -164,6 +168,22 @@ public class EntityBob extends EntityCreature
     public void setFollowed(boolean followed)
     {
     	this.followed = followed;
+    }
+    
+    public void onUpdate()
+    {
+    	super.onUpdate();
+    	World world = ModLoader.getMinecraftInstance().theWorld;
+    	Random rand = new Random();
+    	int j = rand.nextInt(5);
+    	if(j == 0)
+    	{
+    		Material material = world.getBlockMaterial((int)this.posX, (int)this.posY - 1, (int)this.posZ);
+        	if(material == Material.wood)
+        	{
+        		world.setBlockWithNotify((int)this.posX, (int)this.posY, (int)this.posZ, Block.fire.blockID);
+        	}
+    	}	
     }
 
     private boolean followed;
