@@ -9,7 +9,7 @@ public class EntityBob extends EntityCreature
 		super(world);
 		texture = "/fantabob/bob.png";
 		attackStrength = 4;
-		isImmuneToFire = true;
+		isImmuneToFire = mod_FantaBob.getBooleanProp("boblennon.immunetofire");
 		
 		canBurnWool = mod_FantaBob.getBooleanProp("boblennon.pyromaniac.fire.wool");
 		canBurnWood = mod_FantaBob.getBooleanProp("boblennon.pyromaniac.fire.wood");
