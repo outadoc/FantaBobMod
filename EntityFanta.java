@@ -25,32 +25,38 @@ public class EntityFanta extends EntityCreature
        
 		for(int i = 0; i < worldObj.loadedEntityList.size(); i++)
 		{
-			Entity entity1 = (Entity)worldObj.loadedEntityList.get(i);
+			Entity target = (Entity)worldObj.loadedEntityList.get(i);
 			
-			if(!(entity1 instanceof EntityBob))
+			if(target instanceof EntityBob)
 			{
-				continue;
-			}
-           
-			double d2 = entity1.getDistance(posX, posY, posZ);
-			if((d2 < 16) && (d1 == -1D || d2 < d1) && ((EntityBob)entity1).canEntityBeSeen(this))
-			{
-				d1 = d2;
-				bob = (EntityBob)entity1;
-				
-				if(bob.isFollowed())
+				double distance = target.getDistance(posX, posY, posZ);
+				if(distance <= detectionRadius && distance >= rejoinRadius && ((EntityBob)target).canEntityBeSeen(this))
 				{
-					bob = null;
-					continue;
-				}
-				else
-				{
-					bob.setFollowed(true);
+					bob = (EntityBob)target;
+					
+					if(bob.isFollowed())
+						bob = null;
+					else
+						bob.setFollowed(true);
 				}
 			}
 		}
 
 		return bob;
+	}
+	
+	public void onLivingUpdate() 
+	{
+		super.onLivingUpdate();
+		if(entityToAttack != null)
+		{	
+			double distance = entityToAttack.getDistance(posX, posY, posZ);
+			if(distance < proximityRadius)
+			{
+				((EntityBob)entityToAttack).setFollowed(false);
+				entityToAttack = null;
+			}
+		}
 	}
 	
 	protected String getHurtSound() 
@@ -157,4 +163,17 @@ public class EntityFanta extends EntityCreature
         }
         return true;
     }
+    
+    public void onDeath(Entity entity)
+    {
+    	if(entityToAttack != null)
+    	{
+    		((EntityBob)entityToAttack).setFollowed(false);
+    	}
+    	super.onDeath(entity);
+    }
+    
+    private static final double proximityRadius = 3;
+	private static final double detectionRadius = 16;
+	private static final double rejoinRadius    = 5;
 }
