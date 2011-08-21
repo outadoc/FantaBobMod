@@ -20,7 +20,6 @@ public class EntityFanta extends EntityCreature
    
 	protected Entity findPlayerToAttack()
 	{
-		double d1 = -1D;
 		EntityBob bob = null;
        
 		for(int i = 0; i < worldObj.loadedEntityList.size(); i++)

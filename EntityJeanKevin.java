@@ -20,24 +20,20 @@ public class EntityJeanKevin extends EntityCreature
     
     protected Entity findPlayerToAttack()
     {
-        double d1 = -1D;
         EntityPlayer player = null;
         
         for(int i = 0; i < worldObj.loadedEntityList.size(); i++)
         {
-            Entity entity1 = (Entity)worldObj.loadedEntityList.get(i);
+            Entity target = (Entity)worldObj.loadedEntityList.get(i);
             
-            if(!(entity1 instanceof EntityPlayer))
+            if(target instanceof EntityPlayer)
             {
-                continue;
-            }
-            
-            double d2 = entity1.getDistance(posX, posY, posZ);
-            if((d2 < 16) && (d1 == -1D || d2 < d1) && ((EntityPlayer)entity1).canEntityBeSeen(this))
-            {
-                d1 = d2;
-                player = (EntityPlayer)entity1;
-                ModLoader.getMinecraftInstance().thePlayer.triggerAchievement(mod_FantaBob.floodAch);
+            	double distance = target.getDistance(posX, posY, posZ);
+            	if(distance < 16 && ((EntityJeanKevin)target).canEntityBeSeen(this))
+                {
+                    player = (EntityPlayer)target;
+                    ModLoader.getMinecraftInstance().thePlayer.triggerAchievement(mod_FantaBob.floodAch);
+                }
             }
         }
 
