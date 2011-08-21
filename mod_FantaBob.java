@@ -202,14 +202,14 @@ public class mod_FantaBob extends BaseMod
         map.put(EntityBotlennon.class, new RenderBiped(new ModelBiped(), 0.5F));
     }
 	
-	public Properties loadProperties(String location) throws FileNotFoundException, IOException 
+	public LinkedProperties loadProperties(String location) throws FileNotFoundException, IOException 
 	{
-		Properties props = new Properties();
+		LinkedProperties props = new LinkedProperties();
 		props.load(new FileInputStream(location));
 		return props;
 	}
 	
-	public void saveProperties(Properties props, String fileLocation, String comments) throws IOException 
+	public void saveProperties(LinkedProperties props, String fileLocation, String comments) throws IOException 
 	{
 		OutputStream out = new FileOutputStream(fileLocation);
 		props.store(out, comments);
@@ -219,7 +219,7 @@ public class mod_FantaBob extends BaseMod
 	
 	public void createPropsFile(String location) throws IOException
 	{
-		props = new Properties();
+		props = new LinkedProperties();
 		
 		props.setProperty("fanta.spawn", "true");
 		props.setProperty("boblennon.spawn", "true");
@@ -231,6 +231,7 @@ public class mod_FantaBob extends BaseMod
 		props.setProperty("jeankevin.spawn.rate", "10");
 		props.setProperty("botlennon.spawn.rate", "9");
 		
+		props.setProperty("boblennon.immunetofire", "true");
 		props.setProperty("boblennon.pyromaniac", "false");
 		props.setProperty("boblennon.pyromaniac.rate", "40");
 		props.setProperty("boblennon.pyromaniac.fire.wood", "true");
@@ -287,6 +288,6 @@ public class mod_FantaBob extends BaseMod
     //déclaration des blocs
     public static Block bouse;
     
-    public static Properties props;
+    public static LinkedProperties props;
     public static String propsLocation;
 }
