@@ -1,8 +1,6 @@
 package net.minecraft.src;
 
 import java.util.Random;
-
-import net.minecraft.client.Minecraft;
  
 public class EntityBob extends EntityCreature
 {
@@ -11,6 +9,16 @@ public class EntityBob extends EntityCreature
 		super(world);
 		texture = "/fantabob/bob.png";
 		attackStrength = 4;
+		isImmuneToFire = true;
+		
+		canBurnWool = mod_FantaBob.getBooleanProp("boblennon.pyromaniac.fire.wool");
+		canBurnWood = mod_FantaBob.getBooleanProp("boblennon.pyromaniac.fire.wood");
+		canBurnTNT = mod_FantaBob.getBooleanProp("boblennon.pyromaniac.fire.tnt");
+		canBurnPlants = mod_FantaBob.getBooleanProp("boblennon.pyromaniac.fire.plants");
+		canBurnLeaves = mod_FantaBob.getBooleanProp("boblennon.pyromaniac.fire.leaves");
+		
+		isPyromaniac = mod_FantaBob.getBooleanProp("boblennon.pyromaniac");
+		pyroRate = mod_FantaBob.getIntegerProp("boblennon.pyromaniac.rate");
 	}
  
 	protected int getDropItemId()
@@ -170,22 +178,35 @@ public class EntityBob extends EntityCreature
     	this.followed = followed;
     }
     
-    public void onUpdate()
+    public void onLivingUpdate()
     {
-    	super.onUpdate();
-    	World world = ModLoader.getMinecraftInstance().theWorld;
-    	Random rand = new Random();
-    	int j = rand.nextInt(5);
-    	if(j == 0)
+    	super.onLivingUpdate();
+
+    	if(isPyromaniac)
     	{
-    		Material material = world.getBlockMaterial((int)this.posX, (int)this.posY - 1, (int)this.posZ);
-        	if(material == Material.wood)
-        	{
-        		world.setBlockWithNotify((int)this.posX, (int)this.posY, (int)this.posZ, Block.fire.blockID);
-        	}
-    	}	
+    		World world = ModLoader.getMinecraftInstance().theWorld;
+	    	Random rand = new Random();
+	    	int j = rand.nextInt(pyroRate);
+	    	if(j == 0)
+	    	{
+	    		Material material = world.getBlockMaterial((int)this.posX + 1, (int)this.posY - 1, (int)this.posZ);
+	        	if((canBurnWood && material == Material.wood) || (canBurnWool && material == Material.cloth) || (canBurnTNT && material == Material.tnt) || (canBurnPlants && material == Material.plants) || (canBurnLeaves && material == Material.leaves))
+	        	{
+	        		world.setBlockWithNotify((int)this.posX + 1, (int)this.posY, (int)this.posZ, Block.fire.blockID);
+	        	}
+	    	}
+    	}
     }
 
     private boolean followed;
 	protected int attackStrength;
+	
+	private boolean canBurnWood;
+	private boolean canBurnWool;
+	private boolean canBurnTNT;
+	private boolean canBurnPlants;
+	private boolean canBurnLeaves;
+	
+	private boolean isPyromaniac;
+	private Integer pyroRate;
 }

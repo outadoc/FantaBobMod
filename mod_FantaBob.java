@@ -1,6 +1,12 @@
 package net.minecraft.src;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.Map;
+import java.util.Properties;
 
 import net.minecraft.client.Minecraft;
 
@@ -20,6 +26,21 @@ public class mod_FantaBob extends BaseMod
     
 	public mod_FantaBob()
     {
+		propsLocation = new StringBuilder().append(Minecraft.getMinecraftDir()).append("/").append("mod_FantaBob.props").toString();
+		try {
+			props = loadProperties(propsLocation);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+			try {
+				createPropsFile(propsLocation);
+				props = loadProperties(propsLocation);
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 		//enregistrement des mobs
 		ModLoader.RegisterEntityID(EntityBob.class, "Boblennon", ModLoader.getUniqueEntityId());
         ModLoader.RegisterEntityID(EntityFanta.class, "TheFantasio974", ModLoader.getUniqueEntityId());
@@ -27,10 +48,14 @@ public class mod_FantaBob extends BaseMod
         ModLoader.RegisterEntityID(EntityBotlennon.class, "Botlennon", ModLoader.getUniqueEntityId());
 
         //paramètrage du spawn des mobs
-        ModLoader.AddSpawn(EntityBob.class, 9, EnumCreatureType.creature);
-        ModLoader.AddSpawn(EntityFanta.class, 9, EnumCreatureType.creature);
-        ModLoader.AddSpawn(EntityJeanKevin.class, 10, EnumCreatureType.creature);
-        ModLoader.AddSpawn(EntityBotlennon.class, 9, EnumCreatureType.monster);
+        if(getBooleanProp("boblennon.spawn"))
+        	ModLoader.AddSpawn(EntityBob.class, getIntegerProp("boblennon.spawn.rate"), EnumCreatureType.creature);
+        if(getBooleanProp("fanta.spawn"))
+        	ModLoader.AddSpawn(EntityFanta.class, getIntegerProp("fanta.spawn.rate"), EnumCreatureType.creature);
+        if(getBooleanProp("jeankevin.spawn"))
+        	ModLoader.AddSpawn(EntityJeanKevin.class, getIntegerProp("jeankevin.spawn.rate"), EnumCreatureType.creature);
+        if(getBooleanProp("botlennon.spawn"))
+        	ModLoader.AddSpawn(EntityBotlennon.class, getIntegerProp("botlennon.spawn.rate"), EnumCreatureType.monster);
         
         //ajout des armures personnalisées
         ModLoader.AddArmor("fantabob");
@@ -106,7 +131,7 @@ public class mod_FantaBob extends BaseMod
         ModLoader.AddName(magabondRecord, "Magabond Remix");
         
         //ajout des achievements
-        installModAch = new Achievement(887, "installModAch", -2, 0, Item.paper, AchievementList.openInventory).registerAchievement();
+        installModAch = new Achievement(887, "installModAch", -2, 0, Item.paper, null).registerAchievement();
         killBobAch = new Achievement(888, "killBobAch", -2, 3, Block.cobblestone, installModAch).registerAchievement();
         killFantaAch = new Achievement(889, "killFantaAch", -2, -1, Item.swordWood, installModAch).registerAchievement();
         killJeanKevinAch = new Achievement(890, "killJeanKevinAch", -2, -4, Item.arrow, installModAch).registerAchievement();
@@ -177,6 +202,61 @@ public class mod_FantaBob extends BaseMod
         map.put(EntityBotlennon.class, new RenderBiped(new ModelBiped(), 0.5F));
     }
 	
+	public Properties loadProperties(String location) throws FileNotFoundException, IOException 
+	{
+		Properties props = new Properties();
+		props.load(new FileInputStream(location));
+		return props;
+	}
+	
+	public void saveProperties(Properties props, String fileLocation, String comments) throws IOException 
+	{
+		OutputStream out = new FileOutputStream(fileLocation);
+		props.store(out, comments);
+		out.flush();
+		out.close();
+	}
+	
+	public void createPropsFile(String location) throws IOException
+	{
+		props = new Properties();
+		
+		props.setProperty("fanta.spawn", "true");
+		props.setProperty("boblennon.spawn", "true");
+		props.setProperty("jeankevin.spawn", "true");
+		props.setProperty("botlennon.spawn", "true");
+		
+		props.setProperty("fanta.spawn.rate", "9");
+		props.setProperty("boblennon.spawn.rate", "9");
+		props.setProperty("jeankevin.spawn.rate", "10");
+		props.setProperty("botlennon.spawn.rate", "9");
+		
+		props.setProperty("boblennon.pyromaniac", "false");
+		props.setProperty("boblennon.pyromaniac.rate", "40");
+		props.setProperty("boblennon.pyromaniac.fire.wood", "true");
+		props.setProperty("boblennon.pyromaniac.fire.plants", "true");
+		props.setProperty("boblennon.pyromaniac.fire.tnt", "true");
+		props.setProperty("boblennon.pyromaniac.fire.wool", "true");
+		props.setProperty("boblennon.pyromaniac.fire.leaves", "true");
+		
+		saveProperties(props, propsLocation, null);
+	}
+	
+	public static Boolean getBooleanProp(String prop)
+	{
+		return Boolean.parseBoolean((String)props.get(prop));
+	}
+	
+	public static String getStringProp(String prop)
+	{
+		return (String)props.get(prop);
+	}
+	
+	public static Integer getIntegerProp(String prop)
+	{
+		return Integer.parseInt((String)props.get(prop));
+	}
+	
 	//déclaration des objets
     public static Item fantaGlasses;
     public static Item cobbleTie;
@@ -206,4 +286,7 @@ public class mod_FantaBob extends BaseMod
     
     //déclaration des blocs
     public static Block bouse;
+    
+    public static Properties props;
+    public static String propsLocation;
 }
