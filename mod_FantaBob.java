@@ -87,7 +87,7 @@ public class mod_FantaBob extends BaseMod
         	.setBlockName("bouse")
         	.setStepSound(new StepSound("bouse", 3.0F, 1.0F));
         bouse.blockIndexInTexture = ModLoader.addOverride("/terrain.png", "/fantabob/bouse.png");
-        magabondChop = new ItemFood(406, 6, true)
+        magabondChop = new ItemFood(406, 4, true)
         	.setItemName("magabondChop")
         	.setMaxStackSize(64)
         	.setIconCoord(7, 5);
