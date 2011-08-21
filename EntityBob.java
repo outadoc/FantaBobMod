@@ -33,23 +33,19 @@ public class EntityBob extends EntityCreature
 	
 	protected Entity findPlayerToAttack()
 	{
-		double d1 = -1D;
 		EntityJeanKevin kevin = null;
        
 		for(int i = 0; i < worldObj.loadedEntityList.size(); i++)
 		{
-			Entity entity1 = (Entity)worldObj.loadedEntityList.get(i);
+			Entity target = (Entity)worldObj.loadedEntityList.get(i);
            
-			if(!(entity1 instanceof EntityJeanKevin))
+			if(target instanceof EntityJeanKevin)
 			{
-				continue;
-			}
-           
-			double d2 = entity1.getDistance(posX, posY, posZ);
-			if((d2 < 16) && (d1 == -1D || d2 < d1) && ((EntityJeanKevin)entity1).canEntityBeSeen(this))
-			{
-				d1 = d2;
-				kevin = (EntityJeanKevin)entity1;
+				double distance = target.getDistance(posX, posY, posZ);
+				if(distance < 16 && ((EntityJeanKevin)target).canEntityBeSeen(this))
+				{
+					kevin = (EntityJeanKevin)target;
+				}
 			}
 		}
 		return kevin;
@@ -60,7 +56,12 @@ public class EntityBob extends EntityCreature
 		if(attackTime <= 0 && f < 2.0F && entity.boundingBox.maxY > boundingBox.minY && entity.boundingBox.minY < boundingBox.maxY)
 		{
 			attackTime = 20;
-			entity.attackEntityFrom(this, attackStrength);
+			World world = ModLoader.getMinecraftInstance().theWorld;
+			Material material = world.getBlockMaterial((int)entity.posX, (int)entity.posY, (int)entity.posZ);
+			if(material == Material.air && isPyromaniac)
+				world.setBlockWithNotify((int)entity.posX, (int)entity.posY, (int)entity.posZ, Block.fire.blockID);
+			else
+				entity.attackEntityFrom(this, attackStrength);
 		}
 	}
 
