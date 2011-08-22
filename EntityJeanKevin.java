@@ -29,7 +29,7 @@ public class EntityJeanKevin extends EntityCreature
             if(target instanceof EntityPlayer)
             {
             	double distance = target.getDistance(posX, posY, posZ);
-            	if(distance < 16 && ((EntityJeanKevin)target).canEntityBeSeen(this))
+            	if(distance < 16 && ((EntityPlayer)target).canEntityBeSeen(this))
                 {
                     player = (EntityPlayer)target;
                     ModLoader.getMinecraftInstance().thePlayer.triggerAchievement(mod_FantaBob.floodAch);
