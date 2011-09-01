@@ -187,8 +187,8 @@ public class EntityBob extends EntityCreature
     	{
     		World world = ModLoader.getMinecraftInstance().theWorld;
 	    	Random rand = new Random();
-	    	int j = rand.nextInt(pyroRate);
-	    	if(j == 0)
+	    	int j = rand.nextInt(100);
+	    	if(j >= 0 && j <= pyroRate)
 	    	{
 	    		Material material = world.getBlockMaterial((int)this.posX + 1, (int)this.posY - 1, (int)this.posZ);
 	        	if((canBurnWood && material == Material.wood) || (canBurnWool && material == Material.cloth) || (canBurnTNT && material == Material.tnt) || (canBurnPlants && material == Material.plants) || (canBurnLeaves && material == Material.leaves))
