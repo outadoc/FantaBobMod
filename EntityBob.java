@@ -59,7 +59,10 @@ public class EntityBob extends EntityCreature
 			World world = ModLoader.getMinecraftInstance().theWorld;
 			Material material = world.getBlockMaterial((int)entity.posX, (int)entity.posY, (int)entity.posZ);
 			if(material == Material.air && isPyromaniac)
+			{
 				world.setBlockWithNotify((int)entity.posX, (int)entity.posY, (int)entity.posZ, Block.fire.blockID);
+				worldObj.playSoundAtEntity(this, getBurnSound(), getSoundVolume(), 1.0F);
+			}
 			else
 				entity.attackEntityFrom(this, attackStrength);
 		}
@@ -78,6 +81,11 @@ public class EntityBob extends EntityCreature
 	protected String getLivingSound() 
 	{
 		return "fantabob.bob";
+	}
+	
+	private String getBurnSound() 
+    {
+		return "fantabob.bobburn";
 	}
 	
 	public int getMaxSpawnedInChunk() 
@@ -194,12 +202,13 @@ public class EntityBob extends EntityCreature
 	        	if((canBurnWood && material == Material.wood) || (canBurnWool && material == Material.cloth) || (canBurnTNT && material == Material.tnt) || (canBurnPlants && material == Material.plants) || (canBurnLeaves && material == Material.leaves))
 	        	{
 	        		world.setBlockWithNotify((int)this.posX + 1, (int)this.posY, (int)this.posZ, Block.fire.blockID);
+	        		worldObj.playSoundAtEntity(this, getBurnSound(), getSoundVolume(), 1.0F);
 	        	}
 	    	}
     	}
     }
 
-    private boolean followed;
+	private boolean followed;
 	protected int attackStrength;
 	
 	private boolean canBurnWood;
