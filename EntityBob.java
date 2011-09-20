@@ -2,14 +2,14 @@ package net.minecraft.src;
 
 import java.util.Random;
  
-public class EntityBob extends EntityCreature
+public class EntityBob extends EntityFBMob
 {
 	public EntityBob(World world)
 	{
 		super(world);
 		texture = "/fantabob/bob.png";
 		attackStrength = 4;
-		isImmuneToFire = mod_FantaBob.getBooleanProp("boblennon.immunetofire");
+		hasPlayedBurnSound = false;
 		
 		canBurnWool = mod_FantaBob.getBooleanProp("boblennon.pyromaniac.fire.wool");
 		canBurnWood = mod_FantaBob.getBooleanProp("boblennon.pyromaniac.fire.wood");
@@ -19,6 +19,7 @@ public class EntityBob extends EntityCreature
 		
 		isPyromaniac = mod_FantaBob.getBooleanProp("boblennon.pyromaniac");
 		pyroRate = mod_FantaBob.getIntegerProp("boblennon.pyromaniac.rate");
+		isImmuneToFire = mod_FantaBob.getBooleanProp("boblennon.immunetofire");
 	}
  
 	protected int getDropItemId()
@@ -64,9 +65,14 @@ public class EntityBob extends EntityCreature
 				worldObj.playSoundAtEntity(this, getBurnSound(), getSoundVolume(), 1.0F);
 			}
 			else
-				entity.attackEntityFrom(this, attackStrength);
+				attackEntityAsMob(entity);
 		}
 	}
+	
+	protected boolean attackEntityAsMob(Entity entity)
+    {
+        return entity.attackEntityFrom(DamageSource.causeMobDamage(this), attackStrength);
+    }
 
 	protected String getHurtSound() 
 	{
@@ -88,11 +94,6 @@ public class EntityBob extends EntityCreature
 		return "fantabob.bobburn";
 	}
 	
-	public int getMaxSpawnedInChunk() 
-	{
-		return 1;
-	}
-	
 	protected float getSoundVolume() 
 	{
 		return 0.8F;
@@ -105,76 +106,6 @@ public class EntityBob extends EntityCreature
         {
             worldObj.playSoundAtEntity(this, s, getSoundVolume(), 1.0F);
         }
-    }
-    
-    public boolean attackEntityFrom(Entity entity, int i) 
-    {
-        if(worldObj.multiplayerWorld)
-        {
-            return false;
-        }
-        entityAge = 0;
-        if(health <= 0)
-        {
-            return false;
-        }
-        field_704_R = 1.5F;
-        boolean flag = true;
-        if((float)heartsLife > (float)heartsHalvesLife / 2.0F)
-        {
-            if(i <= field_9346_af)
-            {
-                return false;
-            }
-            damageEntity(i - field_9346_af);
-            field_9346_af = i;
-            flag = false;
-        } else
-        {
-            field_9346_af = i;
-            prevHealth = health;
-            heartsLife = heartsHalvesLife;
-            damageEntity(i);
-            hurtTime = maxHurtTime = 10;
-        }
-        attackedAtYaw = 0.0F;
-        if(flag)
-        {
-            worldObj.func_9425_a(this, (byte)2);
-            setBeenAttacked();
-            if(entity != null)
-            {
-                double d = entity.posX - posX;
-                double d1;
-                for(d1 = entity.posZ - posZ; d * d + d1 * d1 < 0.0001D; d1 = (Math.random() - Math.random()) * 0.01D)
-                {
-                    d = (Math.random() - Math.random()) * 0.01D;
-                }
-
-                attackedAtYaw = (float)((Math.atan2(d1, d) * 180D) / 3.1415927410125732D) - rotationYaw;
-                knockBack(entity, i, d, d1);
-            } else
-            {
-                attackedAtYaw = (int)(Math.random() * 2D) * 180;
-            }
-        }
-        if(health <= 0)
-        {
-            if(flag)
-            {
-                worldObj.playSoundAtEntity(this, getDeathSound(), getSoundVolume(), 1.0F);
-            }
-            if(entity instanceof EntityPlayer)
-            {
-            	ModLoader.getMinecraftInstance().thePlayer.triggerAchievement(mod_FantaBob.killBobAch);
-            }
-            onDeath(entity);
-        } else
-        if(flag)
-        {
-            worldObj.playSoundAtEntity(this, getHurtSound(), getSoundVolume(), 1.0F);
-        }
-        return true;
     }
     
     public boolean isFollowed()
@@ -190,26 +121,35 @@ public class EntityBob extends EntityCreature
     public void onLivingUpdate()
     {
     	super.onLivingUpdate();
-
     	if(isPyromaniac)
     	{
     		World world = ModLoader.getMinecraftInstance().theWorld;
 	    	Random rand = new Random();
 	    	int j = rand.nextInt(100);
-	    	if(j >= 0 && j <= pyroRate)
+	    	if(j <= pyroRate)
 	    	{
 	    		Material material = world.getBlockMaterial((int)this.posX + 1, (int)this.posY - 1, (int)this.posZ);
-	        	if((canBurnWood && material == Material.wood) || (canBurnWool && material == Material.cloth) || (canBurnTNT && material == Material.tnt) || (canBurnPlants && material == Material.plants) || (canBurnLeaves && material == Material.leaves))
+	    		if((canBurnWood && material == Material.wood) || (canBurnWool && material == Material.cloth) || (canBurnTNT && material == Material.tnt) || (canBurnPlants && material == Material.plants) || (canBurnLeaves && material == Material.leaves))
 	        	{
 	        		world.setBlockWithNotify((int)this.posX + 1, (int)this.posY, (int)this.posZ, Block.fire.blockID);
-	        		worldObj.playSoundAtEntity(this, getBurnSound(), getSoundVolume(), 1.0F);
+	        		if(!hasPlayedBurnSound)
+	        		{
+	        			worldObj.playSoundAtEntity(this, getBurnSound(), getSoundVolume(), 1.0F);
+	        			hasPlayedBurnSound = true;
+	        		}
 	        	}
 	    	}
     	}
     }
+    
+    public Achievement getKillAch()
+    {
+    	return mod_FantaBob.killBobAch;
+    }
 
 	private boolean followed;
 	protected int attackStrength;
+	private boolean hasPlayedBurnSound;
 	
 	private boolean canBurnWood;
 	private boolean canBurnWool;

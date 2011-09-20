@@ -6,7 +6,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Map;
-import java.util.Properties;
 
 import net.minecraft.client.Minecraft;
 
@@ -14,7 +13,7 @@ public class mod_FantaBob extends BaseMod
 {
     public String Version()
     {
-        return "1.7.2";
+        return "1.8.1";
     } 
     
     /*
@@ -49,13 +48,13 @@ public class mod_FantaBob extends BaseMod
 
         //paramètrage du spawn des mobs
         if(getBooleanProp("boblennon.spawn"))
-        	ModLoader.AddSpawn(EntityBob.class, getIntegerProp("boblennon.spawn.rate"), EnumCreatureType.creature);
+        	ModLoader.AddSpawn(EntityBob.class, getIntegerProp("boblennon.spawn.rate"), 1, 2, EnumCreatureType.creature);
         if(getBooleanProp("fanta.spawn"))
-        	ModLoader.AddSpawn(EntityFanta.class, getIntegerProp("fanta.spawn.rate"), EnumCreatureType.creature);
+        	ModLoader.AddSpawn(EntityFanta.class, getIntegerProp("fanta.spawn.rate"), 1, 2, EnumCreatureType.creature);
         if(getBooleanProp("jeankevin.spawn"))
-        	ModLoader.AddSpawn(EntityJeanKevin.class, getIntegerProp("jeankevin.spawn.rate"), EnumCreatureType.creature);
+        	ModLoader.AddSpawn(EntityJeanKevin.class, getIntegerProp("jeankevin.spawn.rate"), 2, 3, EnumCreatureType.creature);
         if(getBooleanProp("botlennon.spawn"))
-        	ModLoader.AddSpawn(EntityBotlennon.class, getIntegerProp("botlennon.spawn.rate"), EnumCreatureType.monster);
+        	ModLoader.AddSpawn(EntityBotlennon.class, getIntegerProp("botlennon.spawn.rate"), 1, 3, EnumCreatureType.monster);
         
         //ajout des armures personnalisées
         ModLoader.AddArmor("fantabob");
@@ -90,7 +89,7 @@ public class mod_FantaBob extends BaseMod
         magabondChop = new ItemFood(406, 4, true)
         	.setItemName("magabondChop")
         	.setMaxStackSize(64)
-        	.setIconCoord(7, 5);
+        	.setIconIndex(ModLoader.addOverride("/gui/items.png", "/fantabob/magabond_chop.png"));
         magabondRecord = (new ItemRecord(407, "ATE BITS - Magabond"))
         	.setIconIndex(ModLoader.addOverride("/gui/items.png", "/fantabob/magabond_record.png"))
         	.setItemName("magabondRecord");
@@ -122,12 +121,12 @@ public class mod_FantaBob extends BaseMod
         //ajout du nom des blocs/objets
         ModLoader.AddName(fantaGlasses, "Lunettes de Fantasio");
         ModLoader.AddName(cobbleTie, "Cravate en cobble");
-        ModLoader.AddName(toothBrush, "Brosse à dents en obsidienne");
+        ModLoader.AddName(toothBrush, "Brosse a dents en obsidienne");
         ModLoader.AddName(stampCollection, "Collection de timbres");
-        ModLoader.AddName(bambooSword, "Épée en bambou");
+        ModLoader.AddName(bambooSword, "Epee en bambou");
         ModLoader.AddName(hairPotion, "Lotion capillaire de Papy Lennon");
         ModLoader.AddName(bouse, "Bouse");
-        ModLoader.AddName(magabondChop, "Côtelette de magabond");
+        ModLoader.AddName(magabondChop, "Cotelette de magabond");
         ModLoader.AddName(magabondRecord, "Magabond Remix");
         
         //ajout des achievements
@@ -150,19 +149,19 @@ public class mod_FantaBob extends BaseMod
         //descriptions des achievements
         ModLoader.AddAchievementDesc(installModAch, "Youtuber", "Installer le mod FantaBobShow");
         ModLoader.AddAchievementDesc(craftMagabondRecAch, "Magabooond", "Crafter un magabond remix");
-        ModLoader.AddAchievementDesc(getFantaGlassesAch, "Binoclard", "Récupérer les lunettes de Fantasio");
+        ModLoader.AddAchievementDesc(getFantaGlassesAch, "Binoclard", "Recuperer les lunettes de Fantasio");
         ModLoader.AddAchievementDesc(killBobAch, "Bob Lennon Hater", "Tuer Bob Lennon");
         ModLoader.AddAchievementDesc(killFantaAch, "Spirou", "Tuer Fantasio");
-        ModLoader.AddAchievementDesc(killJeanKevinAch, "Sauveur de l'humanité", "Tuer Jean-Kévin");
-        ModLoader.AddAchievementDesc(floodAch, "Flooooood !", "Etre suivi par Jean-Kévin");
+        ModLoader.AddAchievementDesc(killJeanKevinAch, "Sauveur de l'humanite", "Tuer Jean-Kevin");
+        ModLoader.AddAchievementDesc(floodAch, "Flooooood !", "Se faire suivre par Jean-Kevin");
         ModLoader.AddAchievementDesc(killBotlennonAch, "Tas de ferraille", "Tuer Botlennon");
         ModLoader.AddAchievementDesc(getBouseAch, "Élément naturel", "Crafter de la bouse");
         ModLoader.AddAchievementDesc(brushTeethAch, "Hygiène dentaire", "Se brosser les dents");
-        ModLoader.AddAchievementDesc(getHairPotionAch, "Crâne rasé", "Crafter une lotion capillaire");
-        ModLoader.AddAchievementDesc(getStampCollectionAch, "Philatéliste", "Crafter une collection de timbres");
-        ModLoader.AddAchievementDesc(getMagabondChopAch, "Repas avarié", "Obtenir une côtelette de magabond");
+        ModLoader.AddAchievementDesc(getHairPotionAch, "Crane rase", "Crafter une lotion capillaire");
+        ModLoader.AddAchievementDesc(getStampCollectionAch, "Philateliste", "Crafter une collection de timbres");
+        ModLoader.AddAchievementDesc(getMagabondChopAch, "Repas avarie", "Obtenir une cotelette de magabond");
         ModLoader.AddAchievementDesc(getCobbleTieAch, "Bonjour patron", "Crafter une cravate en cobble");
-        ModLoader.AddAchievementDesc(getBambooSwordAch, "Assassin au naturel", "Crafter une épée en bambou");
+        ModLoader.AddAchievementDesc(getBambooSwordAch, "Assassin au naturel", "Crafter une epee en bambou");
         
         //pour le onTickInGame()
         ModLoader.SetInGameHook(this, true, false);
