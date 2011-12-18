@@ -45,16 +45,16 @@ public class EntityFBCreature extends EntityCreature
         boolean flag = true;
         if((float)heartsLife > (float)heartsHalvesLife / 2.0F)
         {
-            if(i <= field_9346_af)
+            if(i <= naturalArmorRating)
             {
                 return false;
             }
-            damageEntity(damagesource, i - field_9346_af);
-            field_9346_af = i;
+            damageEntity(damagesource, i - naturalArmorRating);
+            naturalArmorRating = i;
             flag = false;
         } else
         {
-            field_9346_af = i;
+        	naturalArmorRating = i;
             prevHealth = health;
             heartsLife = heartsHalvesLife;
             damageEntity(damagesource, i);
@@ -122,4 +122,9 @@ public class EntityFBCreature extends EntityCreature
     
     protected int field_34905_c;
     protected EntityPlayer field_34904_b;
+
+	public int getMaxHealth()
+	{
+		return 10;
+	}
 }

@@ -10,25 +10,25 @@ import java.util.Map;
 import net.minecraft.client.Minecraft;
 
 public class mod_FantaBob extends BaseMod
-{
-    public String Version()
-    {
-        return "1.8.1";
-    } 
+{   
+    public String getVersion()
+	{
+		return "1.0.0";
+	}
     
     /*
      * IDs:
-     * items: 400 √† 407
-     * blocs: 120
-     * achievements: 887 √† 901
+     * items: 400 à 407
+     * blocs: 243
+     * achievements: 887 à 901
      */
-    
-	public mod_FantaBob()
-    {
+
+	public void load() 
+	{
 		propsLocation = new StringBuilder().append(Minecraft.getMinecraftDir()).append("/").append("mod_FantaBob.props").toString();
 		try {
 			props = loadProperties(propsLocation);
-		} catch (FileNotFoundException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			try {
 				createPropsFile(propsLocation);
@@ -36,8 +36,6 @@ public class mod_FantaBob extends BaseMod
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
-		} catch (IOException e) {
-			e.printStackTrace();
 		}
 		
 		//enregistrement des mobs
@@ -46,7 +44,7 @@ public class mod_FantaBob extends BaseMod
         ModLoader.RegisterEntityID(EntityJeanKevin.class, "JeanKevin", ModLoader.getUniqueEntityId());
         ModLoader.RegisterEntityID(EntityBotlennon.class, "Botlennon", ModLoader.getUniqueEntityId());
 
-        //param√®trage du spawn des mobs
+        //paramétrage du spawn des mobs
         if(getBooleanProp("boblennon.spawn"))
         	ModLoader.AddSpawn(EntityBob.class, getIntegerProp("boblennon.spawn.rate"), 1, 2, EnumCreatureType.creature);
         if(getBooleanProp("fanta.spawn"))
@@ -56,16 +54,16 @@ public class mod_FantaBob extends BaseMod
         if(getBooleanProp("botlennon.spawn"))
         	ModLoader.AddSpawn(EntityBotlennon.class, getIntegerProp("botlennon.spawn.rate"), 1, 3, EnumCreatureType.monster);
         
-        //ajout des armures personnalis√©es
+        //ajout des armures personnalisées
         ModLoader.AddArmor("fantabob");
         ModLoader.AddArmor("fantabob2");
         
         //instanciation des objets
-        fantaGlasses = (new ItemArmor(144, 3, 5, 0))
+        fantaGlasses = (new ItemArmor(144, EnumArmorMaterial.CLOTH, 5, 0))
         	.setItemName("fantaGlasses")
         	.setMaxStackSize(64)
         	.setIconIndex(ModLoader.addOverride("/gui/items.png", "/fantabob/glasses.png"));
-        cobbleTie = (new ItemArmor(145, 3, 5, 1))
+        cobbleTie = (new ItemArmor(145, EnumArmorMaterial.CLOTH, 5, 1))
         	.setItemName("cobbleTie")
         	.setIconIndex(ModLoader.addOverride("/gui/items.png", "/fantabob/cobble_tie.png"));
         toothBrush = (new ItemObsidianToothBrush(402))
@@ -77,24 +75,25 @@ public class mod_FantaBob extends BaseMod
         bambooSword = (new ItemSword(404, EnumToolMaterial.WOOD))
         	.setItemName("bambooSword")
         	.setIconIndex(ModLoader.addOverride("/gui/items.png", "/fantabob/bamboo_sword.png"));
-        hairPotion = (new ItemArmor(149, 3, 6, 0))
+        hairPotion = (new ItemArmor(149, EnumArmorMaterial.CLOTH, 6, 0))
     		.setItemName("hairPotion")
     		.setIconIndex(ModLoader.addOverride("/gui/items.png", "/fantabob/hair_potion.png"));
-        bouse = new BlockBouse(120, 0)
+        bouse = new BlockBouse(243, 0)
         	.setHardness(0.6F)
         	.setResistance(4.0F)
         	.setBlockName("bouse")
         	.setStepSound(new StepSound("bouse", 3.0F, 1.0F));
         bouse.blockIndexInTexture = ModLoader.addOverride("/terrain.png", "/fantabob/bouse.png");
-        magabondChop = new ItemFood(406, 4, true)
+        magabondChop = new ItemFood(406, 4, 0.1F, true)
+        	.setPotionEffect(Potion.confusion.id, 20, 0, 0.8F)
         	.setItemName("magabondChop")
         	.setMaxStackSize(64)
         	.setIconIndex(ModLoader.addOverride("/gui/items.png", "/fantabob/magabond_chop.png"));
-        magabondRecord = (new ItemRecord(407, "ATE BITS - Magabond"))
+        magabondRecord = (new ItemRecordFantaBob(407, "Magabond", "ATE BITS"))
         	.setIconIndex(ModLoader.addOverride("/gui/items.png", "/fantabob/magabond_record.png"))
         	.setItemName("magabondRecord");
         
-        //enregistrement des objets sp√©ciaux
+        //enregistrement des objets spéciaux
         ModLoader.RegisterEntityID(ItemObsidianToothBrush.class, "ToothBrush", ModLoader.getUniqueEntityId());
         
         //enregistrement des blocs
@@ -121,13 +120,13 @@ public class mod_FantaBob extends BaseMod
         //ajout du nom des blocs/objets
         ModLoader.AddName(fantaGlasses, "Lunettes de Fantasio");
         ModLoader.AddName(cobbleTie, "Cravate en cobble");
-        ModLoader.AddName(toothBrush, "Brosse a dents en obsidienne");
+        ModLoader.AddName(toothBrush, "Brosse à dents en obsidienne");
         ModLoader.AddName(stampCollection, "Collection de timbres");
-        ModLoader.AddName(bambooSword, "Epee en bambou");
+        ModLoader.AddName(bambooSword, "Epée en bambou");
         ModLoader.AddName(hairPotion, "Lotion capillaire de Papy Lennon");
         ModLoader.AddName(bouse, "Bouse");
-        ModLoader.AddName(magabondChop, "Cotelette de magabond");
-        ModLoader.AddName(magabondRecord, "Magabond Remix");
+        ModLoader.AddName(magabondChop, "Côtelette de magabond");
+        ModLoader.AddName(magabondRecord, "Disque");
         
         //ajout des achievements
         installModAch = new Achievement(887, "installModAch", -2, 0, Item.paper, null).registerAchievement();
@@ -155,8 +154,8 @@ public class mod_FantaBob extends BaseMod
         ModLoader.AddAchievementDesc(killJeanKevinAch, "Sauveur de l'humanite", "Tuer Jean-Kevin");
         ModLoader.AddAchievementDesc(floodAch, "Flooooood !", "Se faire suivre par Jean-Kevin");
         ModLoader.AddAchievementDesc(killBotlennonAch, "Tas de ferraille", "Tuer Botlennon");
-        ModLoader.AddAchievementDesc(getBouseAch, "√âl√©ment naturel", "Crafter de la bouse");
-        ModLoader.AddAchievementDesc(brushTeethAch, "Hygi√®ne dentaire", "Se brosser les dents");
+        ModLoader.AddAchievementDesc(getBouseAch, "√âlément naturel", "Crafter de la bouse");
+        ModLoader.AddAchievementDesc(brushTeethAch, "Hygiéne dentaire", "Se brosser les dents");
         ModLoader.AddAchievementDesc(getHairPotionAch, "Crane rase", "Crafter une lotion capillaire");
         ModLoader.AddAchievementDesc(getStampCollectionAch, "Philateliste", "Crafter une collection de timbres");
         ModLoader.AddAchievementDesc(getMagabondChopAch, "Repas avarie", "Obtenir une cotelette de magabond");
@@ -165,7 +164,7 @@ public class mod_FantaBob extends BaseMod
         
         //pour le onTickInGame()
         ModLoader.SetInGameHook(this, true, false);
-    }
+	}
 	
 	public void TakenFromCrafting(EntityPlayer entityplayer, ItemStack itemstack)
     {
@@ -187,7 +186,7 @@ public class mod_FantaBob extends BaseMod
         	entityplayer.triggerAchievement(getMagabondChopAch);
 	}
 	
-	public boolean OnTickInGame(Minecraft minecraft) 
+	public boolean OnTickInGame(float tick, Minecraft minecraft)
 	{
 		minecraft.thePlayer.triggerAchievement(installModAch);
 		return true;
@@ -210,10 +209,14 @@ public class mod_FantaBob extends BaseMod
 	
 	public void saveProperties(LinkedProperties props, String fileLocation, String comments) throws IOException 
 	{
-		OutputStream out = new FileOutputStream(fileLocation);
-		props.store(out, comments);
-		out.flush();
-		out.close();
+		try {
+			OutputStream out = new FileOutputStream(fileLocation);
+			props.store(out, comments);
+			out.flush();
+			out.close();
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void createPropsFile(String location) throws IOException
@@ -257,7 +260,7 @@ public class mod_FantaBob extends BaseMod
 		return Integer.parseInt((String)props.get(prop));
 	}
 	
-	//d√©claration des objets
+	//déclaration des objets
     public static Item fantaGlasses;
     public static Item cobbleTie;
     public static Item toothBrush;
@@ -267,7 +270,7 @@ public class mod_FantaBob extends BaseMod
     public static Item magabondChop;
     public static Item magabondRecord;
     
-    //d√©claration des achievements
+    //déclaration des achievements
     public static Achievement installModAch;
     public static Achievement craftMagabondRecAch;
     public static Achievement getFantaGlassesAch;
@@ -284,7 +287,7 @@ public class mod_FantaBob extends BaseMod
     public static Achievement getCobbleTieAch;
     public static Achievement getBambooSwordAch;
     
-    //d√©claration des blocs
+    //déclaration des blocs
     public static Block bouse;
     
     public static LinkedProperties props;

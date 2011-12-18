@@ -45,16 +45,16 @@ public class EntityFBMob extends EntityMob
         boolean flag = true;
         if((float)heartsLife > (float)heartsHalvesLife / 2.0F)
         {
-            if(i <= field_9346_af)
+            if(i <= naturalArmorRating)
             {
                 return false;
             }
-            damageEntity(damagesource, i - field_9346_af);
-            field_9346_af = i;
+            damageEntity(damagesource, i - naturalArmorRating);
+            naturalArmorRating = i;
             flag = false;
         } else
         {
-            field_9346_af = i;
+        	naturalArmorRating = i;
             prevHealth = health;
             heartsLife = heartsHalvesLife;
             damageEntity(damagesource, i);
@@ -114,6 +114,11 @@ public class EntityFBMob extends EntityMob
         }
         return true;
     }
+    
+    public int getMaxHealth()
+	{
+		return 12;
+	}
     
     public Achievement getKillAch()
     {
