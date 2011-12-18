@@ -18,9 +18,9 @@ public class mod_FantaBob extends BaseMod
     
     /*
      * IDs:
-     * items: 400 à 407
+     * items: 400 √† 407
      * blocs: 243
-     * achievements: 887 à 901
+     * achievements: 887 √† 901
      */
 
 	public void load() 
@@ -44,7 +44,7 @@ public class mod_FantaBob extends BaseMod
         ModLoader.RegisterEntityID(EntityJeanKevin.class, "JeanKevin", ModLoader.getUniqueEntityId());
         ModLoader.RegisterEntityID(EntityBotlennon.class, "Botlennon", ModLoader.getUniqueEntityId());
 
-        //paramétrage du spawn des mobs
+        //param√©trage du spawn des mobs
         if(getBooleanProp("boblennon.spawn"))
         	ModLoader.AddSpawn(EntityBob.class, getIntegerProp("boblennon.spawn.rate"), 1, 2, EnumCreatureType.creature);
         if(getBooleanProp("fanta.spawn"))
@@ -54,7 +54,7 @@ public class mod_FantaBob extends BaseMod
         if(getBooleanProp("botlennon.spawn"))
         	ModLoader.AddSpawn(EntityBotlennon.class, getIntegerProp("botlennon.spawn.rate"), 1, 3, EnumCreatureType.monster);
         
-        //ajout des armures personnalisées
+        //ajout des armures personnalis√©es
         ModLoader.AddArmor("fantabob");
         ModLoader.AddArmor("fantabob2");
         
@@ -93,7 +93,7 @@ public class mod_FantaBob extends BaseMod
         	.setIconIndex(ModLoader.addOverride("/gui/items.png", "/fantabob/magabond_record.png"))
         	.setItemName("magabondRecord");
         
-        //enregistrement des objets spéciaux
+        //enregistrement des objets sp√©ciaux
         ModLoader.RegisterEntityID(ItemObsidianToothBrush.class, "ToothBrush", ModLoader.getUniqueEntityId());
         
         //enregistrement des blocs
@@ -120,12 +120,12 @@ public class mod_FantaBob extends BaseMod
         //ajout du nom des blocs/objets
         ModLoader.AddName(fantaGlasses, "Lunettes de Fantasio");
         ModLoader.AddName(cobbleTie, "Cravate en cobble");
-        ModLoader.AddName(toothBrush, "Brosse à dents en obsidienne");
+        ModLoader.AddName(toothBrush, "Brosse √† dents en obsidienne");
         ModLoader.AddName(stampCollection, "Collection de timbres");
-        ModLoader.AddName(bambooSword, "Epée en bambou");
+        ModLoader.AddName(bambooSword, "Ep√©e en bambou");
         ModLoader.AddName(hairPotion, "Lotion capillaire de Papy Lennon");
         ModLoader.AddName(bouse, "Bouse");
-        ModLoader.AddName(magabondChop, "Côtelette de magabond");
+        ModLoader.AddName(magabondChop, "C√¥telette de magabond");
         ModLoader.AddName(magabondRecord, "Disque");
         
         //ajout des achievements
@@ -148,19 +148,19 @@ public class mod_FantaBob extends BaseMod
         //descriptions des achievements
         ModLoader.AddAchievementDesc(installModAch, "Youtuber", "Installer le mod FantaBobShow");
         ModLoader.AddAchievementDesc(craftMagabondRecAch, "Magabooond", "Crafter un magabond remix");
-        ModLoader.AddAchievementDesc(getFantaGlassesAch, "Binoclard", "Recuperer les lunettes de Fantasio");
+        ModLoader.AddAchievementDesc(getFantaGlassesAch, "Binoclard", "R√©cuperer les lunettes de Fantasio");
         ModLoader.AddAchievementDesc(killBobAch, "Bob Lennon Hater", "Tuer Bob Lennon");
         ModLoader.AddAchievementDesc(killFantaAch, "Spirou", "Tuer Fantasio");
-        ModLoader.AddAchievementDesc(killJeanKevinAch, "Sauveur de l'humanite", "Tuer Jean-Kevin");
+        ModLoader.AddAchievementDesc(killJeanKevinAch, "Sauveur de l'humanit√©", "Tuer Jean-Kevin");
         ModLoader.AddAchievementDesc(floodAch, "Flooooood !", "Se faire suivre par Jean-Kevin");
         ModLoader.AddAchievementDesc(killBotlennonAch, "Tas de ferraille", "Tuer Botlennon");
-        ModLoader.AddAchievementDesc(getBouseAch, "√âlément naturel", "Crafter de la bouse");
-        ModLoader.AddAchievementDesc(brushTeethAch, "Hygiéne dentaire", "Se brosser les dents");
-        ModLoader.AddAchievementDesc(getHairPotionAch, "Crane rase", "Crafter une lotion capillaire");
-        ModLoader.AddAchievementDesc(getStampCollectionAch, "Philateliste", "Crafter une collection de timbres");
-        ModLoader.AddAchievementDesc(getMagabondChopAch, "Repas avarie", "Obtenir une cotelette de magabond");
-        ModLoader.AddAchievementDesc(getCobbleTieAch, "Bonjour patron", "Crafter une cravate en cobble");
-        ModLoader.AddAchievementDesc(getBambooSwordAch, "Assassin au naturel", "Crafter une epee en bambou");
+        ModLoader.AddAchievementDesc(getBouseAch, "El√©ment naturel", "Crafter de la bouse");
+        ModLoader.AddAchievementDesc(brushTeethAch, "Hygi√®ne dentaire", "Se brosser les dents");
+        ModLoader.AddAchievementDesc(getHairPotionAch, "Crane r√¢s√©", "Crafter une lotion capillaire");
+        ModLoader.AddAchievementDesc(getStampCollectionAch, "Philat√©liste", "Crafter une collection de timbres");
+        ModLoader.AddAchievementDesc(getMagabondChopAch, "Repas avari√©", "Obtenir une c√¥telette de magabond");
+        ModLoader.AddAchievementDesc(getCobbleTieAch, "Bonjour patron !", "Crafter une cravate en cobble");
+        ModLoader.AddAchievementDesc(getBambooSwordAch, "Assassin au naturel", "Crafter une √©p√©e en bambou");
         
         //pour le onTickInGame()
         ModLoader.SetInGameHook(this, true, false);
@@ -260,7 +260,7 @@ public class mod_FantaBob extends BaseMod
 		return Integer.parseInt((String)props.get(prop));
 	}
 	
-	//déclaration des objets
+	//d√©claration des objets
     public static Item fantaGlasses;
     public static Item cobbleTie;
     public static Item toothBrush;
@@ -270,7 +270,7 @@ public class mod_FantaBob extends BaseMod
     public static Item magabondChop;
     public static Item magabondRecord;
     
-    //déclaration des achievements
+    //d√©claration des achievements
     public static Achievement installModAch;
     public static Achievement craftMagabondRecAch;
     public static Achievement getFantaGlassesAch;
@@ -287,7 +287,7 @@ public class mod_FantaBob extends BaseMod
     public static Achievement getCobbleTieAch;
     public static Achievement getBambooSwordAch;
     
-    //déclaration des blocs
+    //d√©claration des blocs
     public static Block bouse;
     
     public static LinkedProperties props;
