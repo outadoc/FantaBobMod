@@ -62,20 +62,20 @@ public class EntityFBCreature extends EntityCreature
         }
         attackedAtYaw = 0.0F;
         Entity entity = damagesource.getEntity();
-        if(entity != null)
+        if (entity != null)
         {
-            if(entity instanceof EntityPlayer)
+            if (entity instanceof EntityPlayer)
             {
-                field_34905_c = 60;
-                field_34904_b = (EntityPlayer)entity;
-            } else
-            if(entity instanceof EntityWolf)
+                recentlyHit = 60;
+                attackingPlayer = (EntityPlayer)entity;
+            }
+            else if (entity instanceof EntityWolf)
             {
                 EntityWolf entitywolf = (EntityWolf)entity;
-                if(entitywolf.isWolfTamed())
+                if (entitywolf.isTamed())
                 {
-                    field_34905_c = 60;
-                    field_34904_b = null;
+                    recentlyHit = 60;
+                    attackingPlayer = null;
                 }
             }
         }

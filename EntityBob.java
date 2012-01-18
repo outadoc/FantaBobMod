@@ -69,7 +69,7 @@ public class EntityBob extends EntityFBMob
 		}
 	}
 	
-	protected boolean attackEntityAsMob(Entity entity)
+	public boolean attackEntityAsMob(Entity entity)
     {
         return entity.attackEntityFrom(DamageSource.causeMobDamage(this), attackStrength);
     }
