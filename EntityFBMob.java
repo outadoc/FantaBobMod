@@ -30,7 +30,7 @@ public class EntityFBMob extends EntityMob
         }
     }
 	
-    public boolean attackEntityFrom(DamageSource damagesource, int i)
+    public boolean attackEntityFrom_mob(DamageSource damagesource, int i)
     {
         if(worldObj.multiplayerWorld)
         {
@@ -113,6 +113,28 @@ public class EntityFBMob extends EntityMob
             worldObj.playSoundAtEntity(this, getHurtSound(), getSoundVolume(), 1.0F);
         }
         return true;
+    }
+    
+    public boolean attackEntityFrom(DamageSource damagesource, int i)
+    {
+        if (attackEntityFrom_mob(damagesource, i))
+        {
+            Entity entity = damagesource.getEntity();
+            if (riddenByEntity == entity || ridingEntity == entity)
+            {
+                return true;
+            }
+            if (entity != this)
+            {
+                entityToAttack = entity;
+                field_46020_bQ = (entity instanceof EntityLiving) ? (EntityLiving)entity : null;
+            }
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
     
     public int getMaxHealth()
