@@ -39,24 +39,24 @@ public class mod_FantaBob extends BaseMod
 		}
 		
 		//enregistrement des mobs
-		ModLoader.RegisterEntityID(EntityBob.class, "Boblennon", ModLoader.getUniqueEntityId());
-        ModLoader.RegisterEntityID(EntityFanta.class, "TheFantasio974", ModLoader.getUniqueEntityId());
-        ModLoader.RegisterEntityID(EntityJeanKevin.class, "JeanKevin", ModLoader.getUniqueEntityId());
-        ModLoader.RegisterEntityID(EntityBotlennon.class, "Botlennon", ModLoader.getUniqueEntityId());
+		ModLoader.registerEntityID(EntityBob.class, "Boblennon", ModLoader.getUniqueEntityId());
+        ModLoader.registerEntityID(EntityFanta.class, "TheFantasio974", ModLoader.getUniqueEntityId());
+        ModLoader.registerEntityID(EntityJeanKevin.class, "JeanKevin", ModLoader.getUniqueEntityId());
+        ModLoader.registerEntityID(EntityBotlennon.class, "Botlennon", ModLoader.getUniqueEntityId());
 
         //paramétrage du spawn des mobs
         if(getBooleanProp("boblennon.spawn"))
-        	ModLoader.AddSpawn(EntityBob.class, getIntegerProp("boblennon.spawn.rate"), 1, 2, EnumCreatureType.creature);
+        	ModLoader.addSpawn(EntityBob.class, getIntegerProp("boblennon.spawn.rate"), 1, 2, EnumCreatureType.creature);
         if(getBooleanProp("fanta.spawn"))
-        	ModLoader.AddSpawn(EntityFanta.class, getIntegerProp("fanta.spawn.rate"), 1, 2, EnumCreatureType.creature);
+        	ModLoader.addSpawn(EntityFanta.class, getIntegerProp("fanta.spawn.rate"), 1, 2, EnumCreatureType.creature);
         if(getBooleanProp("jeankevin.spawn"))
-        	ModLoader.AddSpawn(EntityJeanKevin.class, getIntegerProp("jeankevin.spawn.rate"), 2, 3, EnumCreatureType.creature);
+        	ModLoader.addSpawn(EntityJeanKevin.class, getIntegerProp("jeankevin.spawn.rate"), 2, 3, EnumCreatureType.creature);
         if(getBooleanProp("botlennon.spawn"))
-        	ModLoader.AddSpawn(EntityBotlennon.class, getIntegerProp("botlennon.spawn.rate"), 1, 3, EnumCreatureType.monster);
+        	ModLoader.addSpawn(EntityBotlennon.class, getIntegerProp("botlennon.spawn.rate"), 1, 3, EnumCreatureType.monster);
         
         //ajout des armures personnalisées
-        ModLoader.AddArmor("fantabob");
-        ModLoader.AddArmor("fantabob2");
+        ModLoader.addArmor("fantabob");
+        ModLoader.addArmor("fantabob2");
         
         //instanciation des objets
         fantaGlasses = (new ItemArmor(144, EnumArmorMaterial.CLOTH, 5, 0))
@@ -94,39 +94,39 @@ public class mod_FantaBob extends BaseMod
         	.setItemName("magabondRecord");
         
         //enregistrement des objets spéciaux
-        ModLoader.RegisterEntityID(ItemObsidianToothBrush.class, "ToothBrush", ModLoader.getUniqueEntityId());
+        ModLoader.registerEntityID(ItemObsidianToothBrush.class, "ToothBrush", ModLoader.getUniqueEntityId());
         
         //enregistrement des blocs
-        ModLoader.RegisterBlock(bouse);
+        ModLoader.registerBlock(bouse);
         
         //recettes de craft
-        ModLoader.AddRecipe(new ItemStack(fantaGlasses, 1), new Object[]
+        ModLoader.addRecipe(new ItemStack(fantaGlasses, 1), new Object[]
             {"# #", "# #", "X#X", Character.valueOf('#'), Item.stick, Character.valueOf('X'), Block.glass});
-        ModLoader.AddRecipe(new ItemStack(cobbleTie, 1), new Object[]
+        ModLoader.addRecipe(new ItemStack(cobbleTie, 1), new Object[]
             {"#", "X", "X", Character.valueOf('#'), Item.silk, Character.valueOf('X'), Block.cobblestone});
-        ModLoader.AddRecipe(new ItemStack(toothBrush, 1), new Object[]
+        ModLoader.addRecipe(new ItemStack(toothBrush, 1), new Object[]
             {"#X", "# ", "# ", Character.valueOf('#'), Block.obsidian, Character.valueOf('X'), Block.cloth});
-        ModLoader.AddRecipe(new ItemStack(stampCollection, 1), new Object[]
+        ModLoader.addRecipe(new ItemStack(stampCollection, 1), new Object[]
             {"#XX", "#XX", "#XX", Character.valueOf('#'), Item.book, Character.valueOf('X'), Item.paper});
-        ModLoader.AddRecipe(new ItemStack(bambooSword, 1), new Object[]
+        ModLoader.addRecipe(new ItemStack(bambooSword, 1), new Object[]
             {"#", "#", "X", Character.valueOf('#'), Item.reed, Character.valueOf('X'), Item.stick});
-        ModLoader.AddRecipe(new ItemStack(hairPotion, 1), new Object[]
+        ModLoader.addRecipe(new ItemStack(hairPotion, 1), new Object[]
             {" # ", "#X#", " # ", Character.valueOf('#'), Block.glass, Character.valueOf('X'), Item.redstone});
-        ModLoader.AddRecipe(new ItemStack(bouse, 3), new Object[]
+        ModLoader.addRecipe(new ItemStack(bouse, 3), new Object[]
             {"X", "#", Character.valueOf('#'), Block.dirt, Character.valueOf('X'), Item.bucketWater});
-        ModLoader.AddRecipe(new ItemStack(magabondRecord, 1), new Object[]
+        ModLoader.addRecipe(new ItemStack(magabondRecord, 1), new Object[]
             {" # ", "#X#", " # ", Character.valueOf('#'), magabondChop, Character.valueOf('X'), Item.redstone});
         
         //ajout du nom des blocs/objets
-        ModLoader.AddName(fantaGlasses, "Lunettes de Fantasio");
-        ModLoader.AddName(cobbleTie, "Cravate en cobble");
-        ModLoader.AddName(toothBrush, "Brosse à dents en obsidienne");
-        ModLoader.AddName(stampCollection, "Collection de timbres");
-        ModLoader.AddName(bambooSword, "Epée en bambou");
-        ModLoader.AddName(hairPotion, "Lotion capillaire de Papy Lennon");
-        ModLoader.AddName(bouse, "Bouse");
-        ModLoader.AddName(magabondChop, "Côtelette de magabond");
-        ModLoader.AddName(magabondRecord, "Disque");
+        ModLoader.addName(fantaGlasses, "Lunettes de Fantasio");
+        ModLoader.addName(cobbleTie, "Cravate en cobble");
+        ModLoader.addName(toothBrush, "Brosse à dents en obsidienne");
+        ModLoader.addName(stampCollection, "Collection de timbres");
+        ModLoader.addName(bambooSword, "Epée en bambou");
+        ModLoader.addName(hairPotion, "Lotion capillaire de Papy Lennon");
+        ModLoader.addName(bouse, "Bouse");
+        ModLoader.addName(magabondChop, "Côtelette de magabond");
+        ModLoader.addName(magabondRecord, "Disque");
         
         //ajout des achievements
         installModAch = new Achievement(887, "installModAch", -2, 0, Item.paper, null).registerAchievement();
@@ -146,24 +146,24 @@ public class mod_FantaBob extends BaseMod
         getBambooSwordAch = new Achievement(901, "getBambooSwordAch", -3, -7, bambooSword, installModAch).registerAchievement();
         
         //descriptions des achievements
-        ModLoader.AddAchievementDesc(installModAch, "Youtuber", "Installer le mod FantaBobShow");
-        ModLoader.AddAchievementDesc(craftMagabondRecAch, "Magabooond", "Crafter un magabond remix");
-        ModLoader.AddAchievementDesc(getFantaGlassesAch, "Binoclard", "Récuperer les lunettes de Fantasio");
-        ModLoader.AddAchievementDesc(killBobAch, "Bob Lennon Hater", "Tuer Bob Lennon");
-        ModLoader.AddAchievementDesc(killFantaAch, "Spirou", "Tuer Fantasio");
-        ModLoader.AddAchievementDesc(killJeanKevinAch, "Sauveur de l'humanité", "Tuer Jean-Kevin");
-        ModLoader.AddAchievementDesc(floodAch, "Flooooood !", "Se faire suivre par Jean-Kevin");
-        ModLoader.AddAchievementDesc(killBotlennonAch, "Tas de ferraille", "Tuer Botlennon");
-        ModLoader.AddAchievementDesc(getBouseAch, "Elément naturel", "Crafter de la bouse");
-        ModLoader.AddAchievementDesc(brushTeethAch, "Hygiène dentaire", "Se brosser les dents");
-        ModLoader.AddAchievementDesc(getHairPotionAch, "Crane râsé", "Crafter une lotion capillaire");
-        ModLoader.AddAchievementDesc(getStampCollectionAch, "Philatéliste", "Crafter une collection de timbres");
-        ModLoader.AddAchievementDesc(getMagabondChopAch, "Repas avarié", "Obtenir une côtelette de magabond");
-        ModLoader.AddAchievementDesc(getCobbleTieAch, "Bonjour patron !", "Crafter une cravate en cobble");
-        ModLoader.AddAchievementDesc(getBambooSwordAch, "Assassin au naturel", "Crafter une épée en bambou");
+        ModLoader.addAchievementDesc(installModAch, "Youtuber", "Installer le mod FantaBobShow");
+        ModLoader.addAchievementDesc(craftMagabondRecAch, "Magabooond", "Crafter un magabond remix");
+        ModLoader.addAchievementDesc(getFantaGlassesAch, "Binoclard", "Récuperer les lunettes de Fantasio");
+        ModLoader.addAchievementDesc(killBobAch, "Bob Lennon Hater", "Tuer Bob Lennon");
+        ModLoader.addAchievementDesc(killFantaAch, "Spirou", "Tuer Fantasio");
+        ModLoader.addAchievementDesc(killJeanKevinAch, "Sauveur de l'humanité", "Tuer Jean-Kevin");
+        ModLoader.addAchievementDesc(floodAch, "Flooooood !", "Se faire suivre par Jean-Kevin");
+        ModLoader.addAchievementDesc(killBotlennonAch, "Tas de ferraille", "Tuer Botlennon");
+        ModLoader.addAchievementDesc(getBouseAch, "Elément naturel", "Crafter de la bouse");
+        ModLoader.addAchievementDesc(brushTeethAch, "Hygiène dentaire", "Se brosser les dents");
+        ModLoader.addAchievementDesc(getHairPotionAch, "Crane râsé", "Crafter une lotion capillaire");
+        ModLoader.addAchievementDesc(getStampCollectionAch, "Philatéliste", "Crafter une collection de timbres");
+        ModLoader.addAchievementDesc(getMagabondChopAch, "Repas avarié", "Obtenir une côtelette de magabond");
+        ModLoader.addAchievementDesc(getCobbleTieAch, "Bonjour patron !", "Crafter une cravate en cobble");
+        ModLoader.addAchievementDesc(getBambooSwordAch, "Assassin au naturel", "Crafter une épée en bambou");
         
         //pour le onTickInGame()
-        ModLoader.SetInGameHook(this, true, false);
+        ModLoader.setInGameHook(this, true, false);
 	}
 	
 	public void TakenFromCrafting(EntityPlayer entityplayer, ItemStack itemstack)
