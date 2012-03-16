@@ -1,6 +1,6 @@
 package net.minecraft.src;
 
-public class EntityJeanKevin extends EntityFBMob
+public class EntityJeanKevin extends EntityCreature
 {
 	public EntityJeanKevin(World world) 
 	{
@@ -54,7 +54,23 @@ public class EntityJeanKevin extends EntityFBMob
  	{
  		return "fantabob.kevin";
  	}
- 	
+    
+    public Achievement getKillAch()
+    {
+    	return mod_FantaBob.killJeanKevinAch;
+    }
+    
+    public void onDeath(DamageSource par1DamageSource)
+    {
+    	ModLoader.getMinecraftInstance().thePlayer.triggerAchievement(getKillAch());
+    	super.onDeath(par1DamageSource);
+    }
+    
+    private float getSoundPitch()
+    {
+    	return 1.0F;
+    }
+    
     public void playLivingSound()
     {
         String s = getLivingSound();
@@ -64,8 +80,15 @@ public class EntityJeanKevin extends EntityFBMob
         }
     }
     
-    public Achievement getKillAch()
+    public int getMaxHealth()
+	{
+		return 20;
+	}
+    
+    public boolean attackEntityFrom(DamageSource par1DamageSource, int par2)
     {
-    	return mod_FantaBob.killJeanKevinAch;
+		super.attackEntityFrom(par1DamageSource, par2);
+		entityToAttack = null;
+		return false;
     }
 }

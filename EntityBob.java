@@ -2,7 +2,7 @@ package net.minecraft.src;
 
 import java.util.Random;
  
-public class EntityBob extends EntityFBMob
+public class EntityBob extends EntityCreature
 {
 	public EntityBob(World world)
 	{
@@ -98,15 +98,6 @@ public class EntityBob extends EntityFBMob
 	{
 		return 0.8F;
 	}
-	
-    public void playLivingSound()
-    {
-        String s = getLivingSound();
-        if(s != null)
-        {
-            worldObj.playSoundAtEntity(this, s, getSoundVolume(), 1.0F);
-        }
-    }
     
     public boolean isFollowed()
     {
@@ -145,6 +136,38 @@ public class EntityBob extends EntityFBMob
     public Achievement getKillAch()
     {
     	return mod_FantaBob.killBobAch;
+    }
+    
+    public int getMaxHealth()
+	{
+		return 10;
+	}
+	
+	public boolean attackEntityFrom(DamageSource par1DamageSource, int par2)
+    {
+		super.attackEntityFrom(par1DamageSource, par2);
+		entityToAttack = null;
+		return false;
+    }
+	
+	public void onDeath(DamageSource par1DamageSource)
+    {
+    	ModLoader.getMinecraftInstance().thePlayer.triggerAchievement(getKillAch());
+    	super.onDeath(par1DamageSource);
+    }
+    
+    private float getSoundPitch()
+    {
+    	return 1.0F;
+    }
+    
+    public void playLivingSound()
+    {
+        String s = getLivingSound();
+        if(s != null)
+        {
+            worldObj.playSoundAtEntity(this, s, getSoundVolume(), 1.0F);
+        }
     }
 
 	private boolean followed;

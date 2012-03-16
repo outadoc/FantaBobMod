@@ -1,6 +1,6 @@
 package net.minecraft.src;
  
-public class EntityFanta extends EntityFBMob
+public class EntityFanta extends EntityCreature
 {
 	public EntityFanta(World world)
 	{
@@ -84,6 +84,27 @@ public class EntityFanta extends EntityFBMob
         dropItem(i, 1);
     }
     
+    public Achievement getKillAch()
+    {
+    	return mod_FantaBob.killFantaAch;
+    }
+    
+    public void onDeath(DamageSource par1DamageSource)
+    {
+    	if(entityToAttack != null)
+    	{
+    		((EntityBob)entityToAttack).setFollowed(false);
+    	}
+    	
+    	ModLoader.getMinecraftInstance().thePlayer.triggerAchievement(getKillAch());
+    	super.onDeath(par1DamageSource);
+    }
+    
+    private float getSoundPitch()
+    {
+    	return 1.0F;
+    }
+    
     public void playLivingSound()
     {
         String s = getLivingSound();
@@ -93,18 +114,16 @@ public class EntityFanta extends EntityFBMob
         }
     }
     
-    public void onDeath(DamageSource damagesource)
+    public int getMaxHealth()
+	{
+		return 10;
+	}
+	
+	public boolean attackEntityFrom(DamageSource par1DamageSource, int par2)
     {
-    	if(entityToAttack != null)
-    	{
-    		((EntityBob)entityToAttack).setFollowed(false);
-    	}
-    	super.onDeath(damagesource);
-    }
-    
-    public Achievement getKillAch()
-    {
-    	return mod_FantaBob.killFantaAch;
+		super.attackEntityFrom(par1DamageSource, par2);
+		entityToAttack = null;
+		return false;
     }
     
     private static final double proximityRadius = 3;
