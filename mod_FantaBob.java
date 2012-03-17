@@ -164,6 +164,15 @@ public class mod_FantaBob extends BaseMod
         
         //pour le onTickInGame()
         ModLoader.setInGameHook(this, true, false);
+        
+        canBurnWool = getBooleanProp("boblennon.pyromaniac.fire.wool");
+		canBurnWood = getBooleanProp("boblennon.pyromaniac.fire.wood");
+		canBurnTNT = getBooleanProp("boblennon.pyromaniac.fire.tnt");
+		canBurnPlants = getBooleanProp("boblennon.pyromaniac.fire.plants");
+		canBurnLeaves = getBooleanProp("boblennon.pyromaniac.fire.leaves");
+		isPyromaniac = getBooleanProp("boblennon.pyromaniac");
+		pyroRate = getIntegerProp("boblennon.pyromaniac.rate");
+		isImmuneToFire = getBooleanProp("boblennon.immunetofire");
 	}
 	
 	public void TakenFromCrafting(EntityPlayer entityplayer, ItemStack itemstack)
@@ -286,6 +295,16 @@ public class mod_FantaBob extends BaseMod
     public static Achievement getMagabondChopAch;
     public static Achievement getCobbleTieAch;
     public static Achievement getBambooSwordAch;
+    
+    //propriétés spécifiques à BobLennon
+    public static boolean canBurnWool;
+    public static boolean canBurnWood;
+    public static boolean canBurnTNT;
+	public static boolean canBurnPlants;
+	public static boolean canBurnLeaves;
+	public static boolean isPyromaniac;
+	public static Integer pyroRate;
+	public static boolean isImmuneToFire;
     
     //déclaration des blocs
     public static Block bouse;

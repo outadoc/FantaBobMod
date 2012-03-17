@@ -10,16 +10,7 @@ public class EntityBob extends EntityCreature
 		texture = "/fantabob/bob.png";
 		attackStrength = 4;
 		hasPlayedBurnSound = false;
-		
-		canBurnWool = mod_FantaBob.getBooleanProp("boblennon.pyromaniac.fire.wool");
-		canBurnWood = mod_FantaBob.getBooleanProp("boblennon.pyromaniac.fire.wood");
-		canBurnTNT = mod_FantaBob.getBooleanProp("boblennon.pyromaniac.fire.tnt");
-		canBurnPlants = mod_FantaBob.getBooleanProp("boblennon.pyromaniac.fire.plants");
-		canBurnLeaves = mod_FantaBob.getBooleanProp("boblennon.pyromaniac.fire.leaves");
-		
-		isPyromaniac = mod_FantaBob.getBooleanProp("boblennon.pyromaniac");
-		pyroRate = mod_FantaBob.getIntegerProp("boblennon.pyromaniac.rate");
-		isImmuneToFire = mod_FantaBob.getBooleanProp("boblennon.immunetofire");
+		isImmuneToFire = mod_FantaBob.isImmuneToFire;
 	}
  
 	protected int getDropItemId()
@@ -59,7 +50,7 @@ public class EntityBob extends EntityCreature
 			attackTime = 20;
 			World world = ModLoader.getMinecraftInstance().theWorld;
 			Material material = world.getBlockMaterial((int)entity.posX, (int)entity.posY, (int)entity.posZ);
-			if(material == Material.air && isPyromaniac)
+			if(material == Material.air && mod_FantaBob.isPyromaniac)
 			{
 				world.setBlockWithNotify((int)entity.posX, (int)entity.posY, (int)entity.posZ, Block.fire.blockID);
 				worldObj.playSoundAtEntity(this, getBurnSound(), getSoundVolume(), 1.0F);
@@ -112,15 +103,15 @@ public class EntityBob extends EntityCreature
     public void onLivingUpdate()
     {
     	super.onLivingUpdate();
-    	if(isPyromaniac)
+    	if(mod_FantaBob.isPyromaniac)
     	{
     		World world = ModLoader.getMinecraftInstance().theWorld;
 	    	Random rand = new Random();
 	    	int j = rand.nextInt(100);
-	    	if(j <= pyroRate)
+	    	if(j <= mod_FantaBob.pyroRate)
 	    	{
 	    		Material material = world.getBlockMaterial((int)this.posX + 1, (int)this.posY - 1, (int)this.posZ);
-	    		if((canBurnWood && material == Material.wood) || (canBurnWool && material == Material.cloth) || (canBurnTNT && material == Material.tnt) || (canBurnPlants && material == Material.plants) || (canBurnLeaves && material == Material.leaves))
+	    		if((mod_FantaBob.canBurnWood && material == Material.wood) || (mod_FantaBob.canBurnWool && material == Material.cloth) || (mod_FantaBob.canBurnTNT && material == Material.tnt) || (mod_FantaBob.canBurnPlants && material == Material.plants) || (mod_FantaBob.canBurnLeaves && material == Material.leaves))
 	        	{
 	        		world.setBlockWithNotify((int)this.posX + 1, (int)this.posY, (int)this.posZ, Block.fire.blockID);
 	        		if(!hasPlayedBurnSound)
@@ -173,13 +164,4 @@ public class EntityBob extends EntityCreature
 	private boolean followed;
 	protected int attackStrength;
 	private boolean hasPlayedBurnSound;
-	
-	private boolean canBurnWood;
-	private boolean canBurnWool;
-	private boolean canBurnTNT;
-	private boolean canBurnPlants;
-	private boolean canBurnLeaves;
-	
-	private boolean isPyromaniac;
-	private Integer pyroRate;
 }
