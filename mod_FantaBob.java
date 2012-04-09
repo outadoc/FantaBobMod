@@ -13,7 +13,7 @@ public class mod_FantaBob extends BaseMod
 {   
     public String getVersion()
 	{
-		return "1.2.3";
+		return "1.2.5";
 	}
     
     /*
