@@ -110,16 +110,19 @@ public class EntityBob extends EntityCreature
 	    	int j = rand.nextInt(100);
 	    	if(j <= mod_FantaBob.pyroRate)
 	    	{
-	    		Material material = world.getBlockMaterial((int)this.posX + 1, (int)this.posY - 1, (int)this.posZ);
-	    		if((mod_FantaBob.canBurnWood && material == Material.wood) || (mod_FantaBob.canBurnWool && material == Material.cloth) || (mod_FantaBob.canBurnTNT && material == Material.tnt) || (mod_FantaBob.canBurnPlants && material == Material.plants) || (mod_FantaBob.canBurnLeaves && material == Material.leaves))
-	        	{
-	        		world.setBlockWithNotify((int)this.posX + 1, (int)this.posY, (int)this.posZ, Block.fire.blockID);
-	        		if(!hasPlayedBurnSound)
-	        		{
-	        			worldObj.playSoundAtEntity(this, getBurnSound(), getSoundVolume(), 1.0F);
-	        			hasPlayedBurnSound = true;
-	        		}
-	        	}
+	    		if(world != null)
+	    		{
+	    			Material material = world.getBlockMaterial((int)this.posX + 1, (int)this.posY - 1, (int)this.posZ);
+		    		if((mod_FantaBob.canBurnWood && material == Material.wood) || (mod_FantaBob.canBurnWool && material == Material.cloth) || (mod_FantaBob.canBurnTNT && material == Material.tnt) || (mod_FantaBob.canBurnPlants && material == Material.plants) || (mod_FantaBob.canBurnLeaves && material == Material.leaves))
+		        	{
+		        		world.setBlockWithNotify((int)this.posX + 1, (int)this.posY, (int)this.posZ, Block.fire.blockID);
+		        		if(!hasPlayedBurnSound)
+		        		{
+		        			worldObj.playSoundAtEntity(this, getBurnSound(), getSoundVolume(), 1.0F);
+		        			hasPlayedBurnSound = true;
+		        		}
+		        	}
+	    		}
 	    	}
     	}
     }
