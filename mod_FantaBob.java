@@ -37,13 +37,25 @@ public class mod_FantaBob extends BaseMod
 				e1.printStackTrace();
 			}
 		}
-		
+				
 		//enregistrement des mobs
-		ModLoader.registerEntityID(EntityBob.class, "Boblennon", ModLoader.getUniqueEntityId());
-        ModLoader.registerEntityID(EntityFanta.class, "TheFantasio974", ModLoader.getUniqueEntityId());
-        ModLoader.registerEntityID(EntityJeanKevin.class, "JeanKevin", ModLoader.getUniqueEntityId());
-        ModLoader.registerEntityID(EntityBotlennon.class, "Botlennon", ModLoader.getUniqueEntityId());
-
+		ModLoader.registerEntityID(EntityBob.class, "Boblennon", 101, 204, 13613421);
+        ModLoader.registerEntityID(EntityFanta.class, "TheFantasio974", 102, 0, 16777215);
+        ModLoader.registerEntityID(EntityJeanKevin.class, "JeanKevin", 103, 44975, 11762530);
+        ModLoader.registerEntityID(EntityBotlennon.class, "Botlennon", 104, 204, 16777215);
+        
+        //localisation des noms des mobs, pour les oeufs
+        ModLoader.addLocalization("entity.Boblennon.name", "Boblennon");
+        ModLoader.addLocalization("entity.TheFantasio974.name", "TheFantasio974");
+        ModLoader.addLocalization("entity.JeanKevin.name", "Jean-Kévin");
+        ModLoader.addLocalization("entity.Botlennon.name", "Botlennon");
+        
+        //fix pour mc 1.3: impossible d'utiliser ModLoader.getUniqueEntityId(), donc on utilise des ids fixes
+        ModLoader.addEntityTracker(this, EntityBob.class, 101, 64, 2, true);
+        ModLoader.addEntityTracker(this, EntityFanta.class, 102, 64, 2, true);
+        ModLoader.addEntityTracker(this, EntityJeanKevin.class, 103, 64, 2, true);
+        ModLoader.addEntityTracker(this, EntityBotlennon.class, 104, 64, 2, true);
+        
         //paramétrage du spawn des mobs
         if(getBooleanProp("boblennon.spawn"))
         	ModLoader.addSpawn(EntityBob.class, getIntegerProp("boblennon.spawn.rate"), 1, 2, EnumCreatureType.creature);
@@ -273,6 +285,31 @@ public class mod_FantaBob extends BaseMod
 	public static Integer getIntegerProp(String prop)
 	{
 		return Integer.parseInt((String)props.get(prop));
+	}
+	
+	public Entity spawnEntity(int entityId, World worldClient, double x, double y, double z)
+	{
+		switch (entityId)
+		{
+	    	case 101:
+	    		return new EntityBob(worldClient);
+	        case 102:
+	        	return new EntityFanta(worldClient);
+	        case 103:
+				return new EntityJeanKevin(worldClient);
+	     	case 104:
+	     		return new EntityBotlennon(worldClient);
+	        default:
+	            return null;
+		}
+	}
+
+	public Packet23VehicleSpawn getSpawnPacket(Entity entity, int type)
+	{
+		if (entity instanceof EntityBotlennon || entity instanceof EntityBob || entity instanceof EntityFanta || entity instanceof EntityJeanKevin)
+	    	return new Packet23VehicleSpawn(entity, type);
+	    else
+	    	return null;
 	}
 	
 	//déclaration des objets
