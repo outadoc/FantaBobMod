@@ -37,7 +37,7 @@ public class mod_FantaBob extends BaseMod
 				e1.printStackTrace();
 			}
 		}
-				
+		
 		//enregistrement des mobs
 		ModLoader.registerEntityID(EntityBob.class, "Boblennon", 101, 204, 13613421);
         ModLoader.registerEntityID(EntityFanta.class, "TheFantasio974", 102, 0, 16777215);
@@ -193,7 +193,7 @@ public class mod_FantaBob extends BaseMod
 		isImmuneToFire = getBooleanProp("boblennon.immunetofire");
 	}
 	
-	public void TakenFromCrafting(EntityPlayer entityplayer, ItemStack itemstack)
+	public void takenFromCrafting(EntityPlayer entityplayer, ItemStack itemstack)
     {
         if(itemstack.itemID == magabondRecord.shiftedIndex)
         	entityplayer.triggerAchievement(craftMagabondRecAch);
@@ -205,7 +205,7 @@ public class mod_FantaBob extends BaseMod
         	entityplayer.triggerAchievement(getBambooSwordAch);
     }
 	
-	public void OnItemPickup(EntityPlayer entityplayer, ItemStack itemstack) 
+	public void onItemPickup(EntityPlayer entityplayer, ItemStack itemstack) 
 	{
 		if(itemstack.itemID == fantaGlasses.shiftedIndex)
 			entityplayer.triggerAchievement(getFantaGlassesAch);
@@ -213,13 +213,13 @@ public class mod_FantaBob extends BaseMod
         	entityplayer.triggerAchievement(getMagabondChopAch);
 	}
 	
-	public boolean OnTickInGame(float tick, Minecraft minecraft)
+	public boolean onTickInGame(float tick, Minecraft minecraft)
 	{
 		minecraft.thePlayer.triggerAchievement(installModAch);
 		return true;
 	}
 	
-	public void AddRenderer(Map map)
+	public void addRenderer(Map map)
     {
         map.put(EntityBob.class, new RenderBiped(new ModelBiped(), 0.5F));
         map.put(EntityFanta.class, new RenderBiped(new ModelBiped(), 0.5F));
