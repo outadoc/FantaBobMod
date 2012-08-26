@@ -38,6 +38,21 @@ public class EntityBotlennon extends EntityMob
     	super.onDeath(par1DamageSource);
     }
     
+    public void onLivingUpdate()
+    {
+        if (this.worldObj.isDaytime() && !this.worldObj.isRemote)
+        {
+            float var1 = this.getBrightness(1.0F);
+
+            if (var1 > 0.5F && this.worldObj.canBlockSeeTheSky(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.posY), MathHelper.floor_double(this.posZ)) && this.rand.nextFloat() * 30.0F < (var1 - 0.4F) * 2.0F)
+            {
+                this.setFire(8);
+            }
+        }
+
+        super.onLivingUpdate();
+    }
+    
     private float getSoundPitch()
     {
     	return 1.0F;
