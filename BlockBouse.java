@@ -6,16 +6,16 @@ public class BlockBouse extends Block
 	{
 		super(i, j, Material.ground);
 	}
-	
-	public void onEntityCollidedWithBlock(World world, int i, int j, int k, Entity entity)
+
+	public AxisAlignedBB getCollisionBoundingBoxFromPool(World par1World, int par2, int par3, int par4)
     {
-        entity.motionX *= 0.50000000000000002D;
-        entity.motionZ *= 0.50000000000000002D;
+        float var5 = 0.125F;
+        return AxisAlignedBB.getAABBPool().addOrModifyAABBInPool((double)par2, (double)par3, (double)par4, (double)(par2 + 1), (double)((float)(par3 + 1) - var5), (double)(par4 + 1));
     }
-	
-	public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int i, int j, int k)
+
+    public void onEntityCollidedWithBlock(World par1World, int par2, int par3, int par4, Entity par5Entity)
     {
-        float f = 0.125F;
-        return AxisAlignedBB.getBoundingBoxFromPool(i, j, k, i + 1, (float)(j + 1) - f, k + 1);
+        par5Entity.motionX *= 0.4D;
+        par5Entity.motionZ *= 0.4D;
     }
 }
