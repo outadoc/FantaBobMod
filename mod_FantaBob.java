@@ -13,13 +13,14 @@ public class mod_FantaBob extends BaseMod
 {   
     public String getVersion()
 	{
-		return "1.2.5";
+		return "1.3.2";
 	}
     
     /*
      * IDs:
      * items: 400 à 407
      * blocs: 243
+     * entités: 101 à 104
      * achievements: 888 à 901
      */
 
