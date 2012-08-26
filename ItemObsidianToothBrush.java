@@ -5,6 +5,7 @@ public class ItemObsidianToothBrush extends Item
 	protected ItemObsidianToothBrush(int i) 
 	{
 		super(i);
+		this.setTabToDisplayOn(CreativeTabs.tabMisc);
 	}
 
 	public ItemStack onItemRightClick(ItemStack itemstack, World world,	EntityPlayer entityplayer) 

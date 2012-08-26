@@ -62,22 +62,27 @@ public class mod_FantaBob extends BaseMod
         fantaGlasses = (new ItemArmor(144, EnumArmorMaterial.CLOTH, 5, 0))
         	.setItemName("fantaGlasses")
         	.setMaxStackSize(64)
-        	.setIconIndex(ModLoader.addOverride("/gui/items.png", "/fantabob/glasses.png"));
+        	.setIconIndex(ModLoader.addOverride("/gui/items.png", "/fantabob/glasses.png"))
+        	.setTabToDisplayOn(CreativeTabs.tabDeco);
         cobbleTie = (new ItemArmor(145, EnumArmorMaterial.CLOTH, 5, 1))
         	.setItemName("cobbleTie")
-        	.setIconIndex(ModLoader.addOverride("/gui/items.png", "/fantabob/cobble_tie.png"));
+        	.setIconIndex(ModLoader.addOverride("/gui/items.png", "/fantabob/cobble_tie.png"))
+        	.setTabToDisplayOn(CreativeTabs.tabDeco);
         toothBrush = (new ItemObsidianToothBrush(402))
         	.setItemName("toothBrush")
         	.setIconIndex(ModLoader.addOverride("/gui/items.png", "/fantabob/obsi_toothbrush.png"));
         stampCollection = (new Item(403))
     		.setItemName("stampCollection")
-    		.setIconIndex(ModLoader.addOverride("/gui/items.png", "/fantabob/stamp_collection.png"));
+    		.setIconIndex(ModLoader.addOverride("/gui/items.png", "/fantabob/stamp_collection.png"))
+        	.setTabToDisplayOn(CreativeTabs.tabDeco);
         bambooSword = (new ItemSword(404, EnumToolMaterial.WOOD))
         	.setItemName("bambooSword")
-        	.setIconIndex(ModLoader.addOverride("/gui/items.png", "/fantabob/bamboo_sword.png"));
+        	.setIconIndex(ModLoader.addOverride("/gui/items.png", "/fantabob/bamboo_sword.png"))
+        	.setTabToDisplayOn(CreativeTabs.tabCombat);
         hairPotion = (new ItemArmor(149, EnumArmorMaterial.CLOTH, 6, 0))
     		.setItemName("hairPotion")
-    		.setIconIndex(ModLoader.addOverride("/gui/items.png", "/fantabob/hair_potion.png"));
+    		.setIconIndex(ModLoader.addOverride("/gui/items.png", "/fantabob/hair_potion.png"))
+        	.setTabToDisplayOn(CreativeTabs.tabMisc);
         bouse = new BlockBouse(243, 0)
         	.setHardness(0.6F)
         	.setResistance(4.0F)
@@ -88,7 +93,8 @@ public class mod_FantaBob extends BaseMod
         	.setPotionEffect(Potion.confusion.id, 20, 0, 0.8F)
         	.setItemName("magabondChop")
         	.setMaxStackSize(64)
-        	.setIconIndex(ModLoader.addOverride("/gui/items.png", "/fantabob/magabond_chop.png"));
+        	.setIconIndex(ModLoader.addOverride("/gui/items.png", "/fantabob/magabond_chop.png"))
+        	.setTabToDisplayOn(CreativeTabs.tabFood);
         magabondRecord = (new ItemRecordFantaBob(407, "Magabond", "ATE BITS"))
         	.setIconIndex(ModLoader.addOverride("/gui/items.png", "/fantabob/magabond_record.png"))
         	.setItemName("magabondRecord");

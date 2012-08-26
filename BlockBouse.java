@@ -5,6 +5,7 @@ public class BlockBouse extends Block
 	protected BlockBouse(int i, int j) 
 	{
 		super(i, j, Material.ground);
+		this.setCreativeTab(CreativeTabs.tabDeco);
 	}
 
 	public AxisAlignedBB getCollisionBoundingBoxFromPool(World par1World, int par2, int par3, int par4)
