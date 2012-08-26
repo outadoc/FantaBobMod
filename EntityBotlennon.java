@@ -34,7 +34,13 @@ public class EntityBotlennon extends EntityMob
     
     public void onDeath(DamageSource par1DamageSource)
     {
-    	ModLoader.getMinecraftInstance().thePlayer.triggerAchievement(getKillAch());
+    	Entity assassin = par1DamageSource.getEntity();
+
+        if (assassin != null && assassin instanceof EntityPlayer)
+        {
+        	((EntityPlayer) assassin).triggerAchievement(getKillAch());
+        }
+        
     	super.onDeath(par1DamageSource);
     }
     

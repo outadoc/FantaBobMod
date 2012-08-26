@@ -20,24 +20,13 @@ public class EntityJeanKevin extends EntityCreature
     
     protected Entity findPlayerToAttack()
     {
-        EntityPlayer player = null;
-        
-        for(int i = 0; i < worldObj.loadedEntityList.size(); i++)
-        {
-            Entity target = (Entity)worldObj.loadedEntityList.get(i);
-            
-            if(target instanceof EntityPlayer)
-            {
-            	double distance = target.getDistance(posX, posY, posZ);
-            	if(distance < 16 && ((EntityPlayer)target).canEntityBeSeen(this))
-                {
-                    player = (EntityPlayer)target;
-                    ModLoader.getMinecraftInstance().thePlayer.triggerAchievement(mod_FantaBob.floodAch);
-                }
-            }
-        }
-
-        return player;
+    	EntityPlayer var1 = this.worldObj.getClosestVulnerablePlayerToEntity(this, 16.0D);
+    	if(var1 != null && this.canEntityBeSeen(var1)) {
+    		var1.triggerAchievement(mod_FantaBob.floodAch);
+    	    return var1;
+    	}
+    	        
+    	return null;
     }
     
     protected String getHurtSound() 
@@ -62,7 +51,13 @@ public class EntityJeanKevin extends EntityCreature
     
     public void onDeath(DamageSource par1DamageSource)
     {
-    	ModLoader.getMinecraftInstance().thePlayer.triggerAchievement(getKillAch());
+    	Entity assassin = par1DamageSource.getEntity();
+
+        if (assassin != null && assassin instanceof EntityPlayer)
+        {
+        	((EntityPlayer) assassin).triggerAchievement(getKillAch());
+        }
+        
     	super.onDeath(par1DamageSource);
     }
     

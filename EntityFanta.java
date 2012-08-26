@@ -96,7 +96,13 @@ public class EntityFanta extends EntityCreature
     		((EntityBob)entityToAttack).setFollowed(false);
     	}
     	
-    	ModLoader.getMinecraftInstance().thePlayer.triggerAchievement(getKillAch());
+    	Entity assassin = par1DamageSource.getEntity();
+
+        if (assassin != null && assassin instanceof EntityPlayer)
+        {
+        	((EntityPlayer) assassin).triggerAchievement(getKillAch());
+        }
+        
     	super.onDeath(par1DamageSource);
     }
     
