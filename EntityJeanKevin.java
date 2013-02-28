@@ -10,7 +10,7 @@ public class EntityJeanKevin extends EntityCreature
 	
 	protected int getDropItemId()
 	{
-		return mod_FantaBob.magabondChop.shiftedIndex;
+		return mod_FantaBob.magabondChop.itemID;
 	}
 	
 	public ItemStack getHeldItem()
@@ -61,7 +61,7 @@ public class EntityJeanKevin extends EntityCreature
     	super.onDeath(par1DamageSource);
     }
     
-    private float getSoundPitch()
+    protected float getSoundPitch()
     {
     	return 1.0F;
     }

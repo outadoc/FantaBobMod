@@ -10,7 +10,7 @@ public class EntityBotlennon extends EntityMob
 	
 	protected int getDropItemId()
 	{
-		return Item.ingotIron.shiftedIndex;
+		return Item.ingotIron.itemID;
 	}
    
 	public ItemStack getHeldItem()
@@ -59,7 +59,7 @@ public class EntityBotlennon extends EntityMob
         super.onLivingUpdate();
     }
     
-    private float getSoundPitch()
+    protected float getSoundPitch()
     {
     	return 1.0F;
     }

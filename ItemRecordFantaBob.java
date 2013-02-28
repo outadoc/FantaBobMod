@@ -10,7 +10,7 @@ public class ItemRecordFantaBob extends ItemRecord
     {
         super(i, song);
         this.authorName = author;
-        this.setTabToDisplayOn(CreativeTabs.tabMisc);
+        this.setCreativeTab(CreativeTabs.tabMisc);
     }
 
     public void addInformation(ItemStack itemstack, List list)

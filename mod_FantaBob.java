@@ -76,26 +76,26 @@ public class mod_FantaBob extends BaseMod
         	.setItemName("fantaGlasses")
         	.setMaxStackSize(64)
         	.setIconIndex(ModLoader.addOverride("/gui/items.png", "/fantabob/glasses.png"))
-        	.setTabToDisplayOn(CreativeTabs.tabDeco);
+        	.setCreativeTab(CreativeTabs.tabDecorations);
         cobbleTie = (new ItemArmor(145, EnumArmorMaterial.CLOTH, 5, 1))
         	.setItemName("cobbleTie")
         	.setIconIndex(ModLoader.addOverride("/gui/items.png", "/fantabob/cobble_tie.png"))
-        	.setTabToDisplayOn(CreativeTabs.tabDeco);
+        	.setCreativeTab(CreativeTabs.tabDecorations);
         toothBrush = (new ItemObsidianToothBrush(402))
         	.setItemName("toothBrush")
         	.setIconIndex(ModLoader.addOverride("/gui/items.png", "/fantabob/obsi_toothbrush.png"));
         stampCollection = (new Item(403))
     		.setItemName("stampCollection")
     		.setIconIndex(ModLoader.addOverride("/gui/items.png", "/fantabob/stamp_collection.png"))
-        	.setTabToDisplayOn(CreativeTabs.tabDeco);
+        	.setCreativeTab(CreativeTabs.tabDecorations);
         bambooSword = (new ItemSword(404, EnumToolMaterial.WOOD))
         	.setItemName("bambooSword")
         	.setIconIndex(ModLoader.addOverride("/gui/items.png", "/fantabob/bamboo_sword.png"))
-        	.setTabToDisplayOn(CreativeTabs.tabCombat);
+        	.setCreativeTab(CreativeTabs.tabCombat);
         hairPotion = (new ItemArmor(149, EnumArmorMaterial.CLOTH, 6, 0))
     		.setItemName("hairPotion")
     		.setIconIndex(ModLoader.addOverride("/gui/items.png", "/fantabob/hair_potion.png"))
-        	.setTabToDisplayOn(CreativeTabs.tabMisc);
+        	.setCreativeTab(CreativeTabs.tabMisc);
         bouse = new BlockBouse(243, 0)
         	.setHardness(0.6F)
         	.setResistance(4.0F)
@@ -107,7 +107,7 @@ public class mod_FantaBob extends BaseMod
         	.setItemName("magabondChop")
         	.setMaxStackSize(64)
         	.setIconIndex(ModLoader.addOverride("/gui/items.png", "/fantabob/magabond_chop.png"))
-        	.setTabToDisplayOn(CreativeTabs.tabFood);
+        	.setCreativeTab(CreativeTabs.tabFood);
         magabondRecord = (new ItemRecordFantaBob(407, "Magabond", "ATE BITS"))
         	.setIconIndex(ModLoader.addOverride("/gui/items.png", "/fantabob/magabond_record.png"))
         	.setItemName("magabondRecord");
@@ -196,21 +196,21 @@ public class mod_FantaBob extends BaseMod
 	
 	public void takenFromCrafting(EntityPlayer entityplayer, ItemStack itemstack)
     {
-        if(itemstack.itemID == magabondRecord.shiftedIndex)
+        if(itemstack.itemID == magabondRecord.itemID)
         	entityplayer.triggerAchievement(craftMagabondRecAch);
         else if(itemstack.itemID == bouse.blockID)
 			entityplayer.triggerAchievement(getBouseAch);
-        else if(itemstack.itemID == hairPotion.shiftedIndex)
+        else if(itemstack.itemID == hairPotion.itemID)
         	entityplayer.triggerAchievement(getHairPotionAch);
-        else if(itemstack.itemID == bambooSword.shiftedIndex)
+        else if(itemstack.itemID == bambooSword.itemID)
         	entityplayer.triggerAchievement(getBambooSwordAch);
     }
 	
 	public void onItemPickup(EntityPlayer entityplayer, ItemStack itemstack) 
 	{
-		if(itemstack.itemID == fantaGlasses.shiftedIndex)
+		if(itemstack.itemID == fantaGlasses.itemID)
 			entityplayer.triggerAchievement(getFantaGlassesAch);
-		else if(itemstack.itemID == magabondChop.shiftedIndex)
+		else if(itemstack.itemID == magabondChop.itemID)
         	entityplayer.triggerAchievement(getMagabondChopAch);
 	}
 	

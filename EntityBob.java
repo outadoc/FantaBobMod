@@ -156,7 +156,7 @@ public class EntityBob extends EntityCreature
     	super.onDeath(par1DamageSource);
     }
     
-    private float getSoundPitch()
+    protected float getSoundPitch()
     {
     	return 1.0F;
     }

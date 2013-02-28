@@ -10,7 +10,7 @@ public class EntityFanta extends EntityCreature
  
 	protected int getDropItemId()
 	{
-		return mod_FantaBob.fantaGlasses.shiftedIndex;
+		return mod_FantaBob.fantaGlasses.itemID;
 	}
    
 	public ItemStack getHeldItem()
@@ -106,7 +106,7 @@ public class EntityFanta extends EntityCreature
     	super.onDeath(par1DamageSource);
     }
     
-    private float getSoundPitch()
+    protected float getSoundPitch()
     {
     	return 1.0F;
     }
