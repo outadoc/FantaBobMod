@@ -7,7 +7,27 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Map;
 
+import net.minecraft.block.Block;
+import net.minecraft.block.StepSound;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.model.ModelBiped;
+import net.minecraft.client.renderer.entity.RenderBiped;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EnumCreatureType;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.EnumArmorMaterial;
+import net.minecraft.item.EnumToolMaterial;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemSword;
+import net.minecraft.item.ItemArmor;
+import net.minecraft.item.ItemFood;
+import net.minecraft.item.ItemStack;
+import net.minecraft.network.packet.Packet23VehicleSpawn;
+import net.minecraft.potion.Potion;
+import net.minecraft.stats.Achievement;
+import net.minecraft.stats.AchievementList;
+import net.minecraft.world.World;
 
 public class mod_FantaBob extends BaseMod
 {   
@@ -111,10 +131,7 @@ public class mod_FantaBob extends BaseMod
 	    	.setBlockName("bouse")
 	    	.setStepSound(new StepSound("bouse", 3.0F, 1.0F));
 	    bouse.blockIndexInTexture = ModLoader.addOverride("/terrain.png", "/fantabob/bouse.png");
-        
-        //enregistrement des objets spéciaux
-        ModLoader.registerEntityID(ItemObsidianToothBrush.class, "ToothBrush", ModLoader.getUniqueEntityId());
-        
+                
         //enregistrement des blocs
         ModLoader.registerBlock(bouse);
         

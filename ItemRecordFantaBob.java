@@ -2,6 +2,10 @@ package net.minecraft.src;
 
 import java.util.List;
 
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.ItemRecord;
+import net.minecraft.item.ItemStack;
+
 public class ItemRecordFantaBob extends ItemRecord
 {
 	public final String authorName;

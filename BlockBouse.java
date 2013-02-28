@@ -1,5 +1,12 @@
 package net.minecraft.src;
 
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.Entity;
+import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.world.World;
+
 public class BlockBouse extends Block
 {
 	protected BlockBouse(int i, int j) 
