@@ -72,12 +72,12 @@ public class mod_FantaBob extends BaseMod
         ModLoader.addArmor("fantabob2");
         
         //instanciation des objets
-        fantaGlasses = (new ItemArmor(144, EnumArmorMaterial.CLOTH, 5, 0))
+        fantaGlasses = (new ItemArmor(400, EnumArmorMaterial.CLOTH, 5, 0))
         	.setItemName("fantaGlasses")
         	.setMaxStackSize(64)
         	.setIconIndex(ModLoader.addOverride("/gui/items.png", "/fantabob/glasses.png"))
         	.setCreativeTab(CreativeTabs.tabDecorations);
-        cobbleTie = (new ItemArmor(145, EnumArmorMaterial.CLOTH, 5, 1))
+        cobbleTie = (new ItemArmor(401, EnumArmorMaterial.CLOTH, 5, 1))
         	.setItemName("cobbleTie")
         	.setIconIndex(ModLoader.addOverride("/gui/items.png", "/fantabob/cobble_tie.png"))
         	.setCreativeTab(CreativeTabs.tabDecorations);
@@ -92,16 +92,10 @@ public class mod_FantaBob extends BaseMod
         	.setItemName("bambooSword")
         	.setIconIndex(ModLoader.addOverride("/gui/items.png", "/fantabob/bamboo_sword.png"))
         	.setCreativeTab(CreativeTabs.tabCombat);
-        hairPotion = (new ItemArmor(149, EnumArmorMaterial.CLOTH, 6, 0))
+        hairPotion = (new ItemArmor(405, EnumArmorMaterial.CLOTH, 6, 0))
     		.setItemName("hairPotion")
     		.setIconIndex(ModLoader.addOverride("/gui/items.png", "/fantabob/hair_potion.png"))
         	.setCreativeTab(CreativeTabs.tabMisc);
-        bouse = new BlockBouse(243, 0)
-        	.setHardness(0.6F)
-        	.setResistance(4.0F)
-        	.setBlockName("bouse")
-        	.setStepSound(new StepSound("bouse", 3.0F, 1.0F));
-        bouse.blockIndexInTexture = ModLoader.addOverride("/terrain.png", "/fantabob/bouse.png");
         magabondChop = new ItemFood(406, 4, 0.1F, true)
         	.setPotionEffect(Potion.confusion.id, 20, 0, 0.8F)
         	.setItemName("magabondChop")
@@ -111,6 +105,12 @@ public class mod_FantaBob extends BaseMod
         magabondRecord = (new ItemRecordFantaBob(407, "Magabond", "ATE BITS"))
         	.setIconIndex(ModLoader.addOverride("/gui/items.png", "/fantabob/magabond_record.png"))
         	.setItemName("magabondRecord");
+        bouse = new BlockBouse(200, 0)
+	    	.setHardness(0.6F)
+	    	.setResistance(4.0F)
+	    	.setBlockName("bouse")
+	    	.setStepSound(new StepSound("bouse", 3.0F, 1.0F));
+	    bouse.blockIndexInTexture = ModLoader.addOverride("/terrain.png", "/fantabob/bouse.png");
         
         //enregistrement des objets spéciaux
         ModLoader.registerEntityID(ItemObsidianToothBrush.class, "ToothBrush", ModLoader.getUniqueEntityId());
