@@ -6,7 +6,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.StepSound;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EnumCreatureType;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumArmorMaterial;
 import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.Item;
@@ -14,10 +13,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.stats.Achievement;
 import net.minecraft.stats.AchievementList;
-
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.EnumHelper;
-
+import net.minecraftforge.common.MinecraftForge;
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
@@ -31,6 +30,8 @@ import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
+import cpw.mods.fml.relauncher.Side;
+import fr.outadoc.FantaBobMod.client.FTMEventSound;
 
 @Mod(modid = "FantaBobMod", name = "Fanta Bob Mod", version = "2.0.0")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
@@ -80,6 +81,7 @@ public class FantaBobMod
 	// BobLennon capacities
 	public static boolean canBurnWool, canBurnWood, canBurnTNT, canBurnPlants, canBurnLeaves, isPyromaniac, isImmuneToFire;
 	public static int pyroRate;
+	
 
 	/*
 	 * IDs: items: 8400 ˆ 8407 blocs: 1200 entites: 101 ˆ 104 achievements: 888 ˆ
@@ -89,6 +91,12 @@ public class FantaBobMod
 	@PreInit
 	public void preload(FMLPreInitializationEvent event)
 	{
+		Side side = FMLCommonHandler.instance().getEffectiveSide();
+		if(side == Side.CLIENT)
+		{
+		      MinecraftForge.EVENT_BUS.register(new FTMEventSound());
+		}
+		
 		FBMlog.setParent(FMLLog.getLogger());
 		//config
 		Configuration cfg = new Configuration(event.getSuggestedConfigurationFile());
