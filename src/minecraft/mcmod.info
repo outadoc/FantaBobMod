@@ -1,0 +1,18 @@
+[
+{
+    "modid": "FantaBobMod",
+    "name": "Mod Fanta Bob Show",
+    "description": "Un mod à l'image des youtubers derrière le Fanta Bob Show !",
+    "version": "2.0.0",
+    "mcversion": "1.5.2",
+    "url": "http://dev.outadoc.fr/project/fantabobmod/",
+    "updateUrl": "",
+    "authors": [ "outadoc", "robin4002" ],
+    "credits": "Créé avec amour par outadoc pour outa[dev].",
+    "logoFile": "",
+    "screenshots": [],
+    "parent": "",
+    "dependencies": [],
+    "dependants": [ ],
+}
+]
