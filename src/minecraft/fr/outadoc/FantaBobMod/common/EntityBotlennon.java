@@ -1,5 +1,8 @@
-package fr.mcnanotech.FantaBobMod.common;
+package fr.outadoc.FantaBobMod.common;
 
+import java.util.Calendar;
+
+import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
@@ -9,44 +12,55 @@ import net.minecraft.stats.Achievement;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldProviderHell;
 
-public class EntityBotlennon extends EntityMob {
-	public EntityBotlennon(World world) {
+public class EntityBotlennon extends EntityMob
+{
+	public EntityBotlennon(World world)
+	{
 		super(world);
-		texture = "/fantabob/botlennon.png";
+		texture = "/mods/FantaBobMod/Textures/Mobs/botlennon.png";
 	}
 
-	protected int getDropItemId() {
+	protected int getDropItemId()
+	{
 		return Item.ingotIron.itemID;
 	}
-
-	public ItemStack getHeldItem() {
+	
+	public ItemStack getHeldItem()
+	{
 		return (new ItemStack(Item.swordStone));
 	}
 
-	protected String getLivingSound() {
+	protected String getLivingSound()
+	{
 		return "fantabob.botlennon";
 	}
 
-	public void playLivingSound() {
+	public void playLivingSound()
+	{
 		String s = getLivingSound();
 		if (s != null) {
 			worldObj.playSoundAtEntity(this, s, getSoundVolume(), 1.0F);
 		}
 	}
 
-	public void onDeath(DamageSource par1DamageSource) {
+	public void onDeath(DamageSource par1DamageSource)
+	{
 		Entity assassin = par1DamageSource.getEntity();
 
-		if (assassin != null && assassin instanceof EntityPlayer) {
+		if (assassin != null && assassin instanceof EntityPlayer) 
+		{
 			((EntityPlayer) assassin).triggerAchievement(getKillAch());
 		}
 
 		super.onDeath(par1DamageSource);
 	}
 
-	public void onLivingUpdate() {
-		if (this.worldObj.isDaytime() && !this.worldObj.isRemote) {
+	public void onLivingUpdate() 
+	{
+		if (this.worldObj.isDaytime() && !this.worldObj.isRemote)
+		{
 			float var1 = this.getBrightness(1.0F);
 
 			if (var1 > 0.5F
@@ -62,15 +76,18 @@ public class EntityBotlennon extends EntityMob {
 		super.onLivingUpdate();
 	}
 
-	protected float getSoundPitch() {
+	protected float getSoundPitch() 
+	{
 		return 1.0F;
 	}
 
-	public int getMaxHealth() {
+	public int getMaxHealth()
+	{
 		return 12;
 	}
 
-	public Achievement getKillAch() {
+	public Achievement getKillAch()
+	{
 		return FantaBobMod.killBotlennonAch;
 	}
 }
