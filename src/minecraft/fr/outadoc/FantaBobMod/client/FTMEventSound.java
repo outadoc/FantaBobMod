@@ -1,5 +1,14 @@
 package fr.outadoc.FantaBobMod.client;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.URL;
+import java.net.URLConnection;
+
+import net.minecraft.client.Minecraft;
 import net.minecraftforge.client.event.sound.SoundLoadEvent;
 import net.minecraftforge.event.ForgeSubscribe;
 import fr.outadoc.FantaBobMod.common.FantaBobMod;
@@ -64,6 +73,13 @@ public class FTMEventSound
             event.manager.soundPoolSounds.addSound("step/bouse1.ogg", FantaBobMod.class.getResource("/mods/FantaBobMod/Sounds/step/bouse1.ogg"));
             event.manager.soundPoolSounds.addSound("step/bouse2.ogg", FantaBobMod.class.getResource("/mods/FantaBobMod/Sounds/step/bouse2.ogg"));
             
+            File Magabond = new File(Minecraft.getMinecraftDir() + "/resources/mod/streaming/Magabond.ogg");
+            
+            if (!Magabond.exists())
+            {
+            	downloadsounds("http://dl.mcnanotech.fr/robin4002/mods/FantaBobMod/Magabond.ogg");
+            }
+            
             FantaBobMod.FBMlog.info("sound loaded");
         }
         
@@ -71,5 +87,46 @@ public class FTMEventSound
         {
             System.err.println("Failed to register sounds.");
         }
+    }
+
+	private void downloadsounds(String url) throws Exception
+    {
+		String fAddress = url;
+		String localFileName = "Magabond.ogg";
+		String destinationDir = Minecraft.getMinecraftDir() + "/resources/mod/streaming";
+		OutputStream outStream = null;
+		URLConnection uCon = null;
+		InputStream is = null;
+		File tmp = new File(destinationDir);
+
+		if(!tmp.exists())
+		{
+			tmp.mkdir();
+		}
+
+		try
+		{
+			URL Url;
+			byte[] buf;
+			int ByteRead,ByteWritten=0;
+			Url = new URL(fAddress);
+			outStream = new BufferedOutputStream(new FileOutputStream(destinationDir+"/"+localFileName));
+
+			uCon = Url.openConnection();
+			is = uCon.getInputStream();
+			buf = new byte[1024]; while ((ByteRead = is.read(buf)) != -1)
+			{
+				outStream.write(buf, 0, ByteRead);
+				ByteWritten += ByteRead;
+			}
+			
+			is.close();
+			outStream.close();
+		}
+		
+		catch (Exception e)
+		{ 
+			e.printStackTrace(); 
+		}
     }
 }
