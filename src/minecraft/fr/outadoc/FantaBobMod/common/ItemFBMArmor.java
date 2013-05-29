@@ -26,7 +26,7 @@ public class ItemFBMArmor extends ItemArmor
     	}
     	else if(stack.itemID == FantaBobMod.hairPotion.itemID)
     	{
-    		return "/mods/FantaBobMod/Textures/Armor/fantabob_2.png";
+    		return "/mods/FantaBobMod/Textures/Armor/fantabob2_1.png";
     	}
     	else
     	{

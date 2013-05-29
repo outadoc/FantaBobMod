@@ -59,7 +59,8 @@ public class FantaBobMod
 	
 	public static CraftingHandler craftHandler = new CraftingHandler();
 	public static PickupHandler pickupHandler = new PickupHandler();
-
+	public static PlayerHandler playerHandler = new PlayerHandler();
+	
 	// Block
 	public static Block bouse;
 	
@@ -163,12 +164,12 @@ public class FantaBobMod
 		proxy.addEntityRender();
 
 		//Items
-        fantaGlasses = new ItemFBMArmor(fantaGlassesID, FBMarmor, 5, 0).setUnlocalizedName("fantaGlasses").setMaxStackSize(64);
-		cobbleTie = new ItemFBMArmor(cobbleTieID, FBMarmor, 5, 1).setUnlocalizedName("cobbleTie");
+        fantaGlasses = new ItemFBMArmor(fantaGlassesID, FBMarmor, 1, 0).setUnlocalizedName("fantaGlasses").setMaxStackSize(64);
+		cobbleTie = new ItemFBMArmor(cobbleTieID, FBMarmor, 1, 1).setUnlocalizedName("cobbleTie");
 		toothBrush = new ItemObsidianToothBrush(toothBrushID).setUnlocalizedName("toothBrush");
 		stampCollection = new ItemStampCollection(stampCollectionID).setUnlocalizedName("stampCollection");
 		bambooSword = new ItemBambooSword(bambooSwordID, EnumToolMaterial.WOOD).setUnlocalizedName("bambooSword");
-		hairPotion = new ItemFBMArmor(hairPotionID, FBMarmor, 6, 0).setUnlocalizedName("hairPotion").setCreativeTab(CreativeTabs.tabMisc);
+		hairPotion = new ItemFBMArmor(hairPotionID, FBMarmor, 1, 0).setUnlocalizedName("hairPotion").setCreativeTab(CreativeTabs.tabMisc);
 		magabondChop = new ItemFBMFood(magabondChopID, 4, 0.1F, true).setPotionEffect(Potion.confusion.id, 20, 0, 0.8F).setUnlocalizedName("magabondChop");
 		magabondRecord = new ItemRecordFantaBob(magabondRecordID, "Magabond", "ATE BITS").setUnlocalizedName("magabondRecord");
 		
@@ -181,9 +182,7 @@ public class FantaBobMod
 		//Handler pour les achivement
 		GameRegistry.registerCraftingHandler(craftHandler);
 		GameRegistry.registerPickupHandler(pickupHandler);
-
-		// pour le onTickInGame()
-		// ModLoader.setInGameHook(this, true, false);
+		GameRegistry.registerPlayerTracker(playerHandler);
 	}
 	
 	@PostInit
@@ -236,7 +235,7 @@ public class FantaBobMod
 		LanguageRegistry.addName(toothBrush, "Brosse à dents en obsidienne");
 		LanguageRegistry.addName(stampCollection, "Collection de timbres");
 		LanguageRegistry.addName(bambooSword, "Epée en bambou");
-		LanguageRegistry.addName(hairPotion, "Lotion capillaire de Papy Lennon");
+		LanguageRegistry.addName(hairPotion, "Potion capillaire de Papy Lennon");
 		LanguageRegistry.addName(bouse, "Bouse");
 		LanguageRegistry.addName(magabondChop, "Côtelette de magabond");
 		LanguageRegistry.addName(magabondRecord, "Disque");
@@ -247,7 +246,7 @@ public class FantaBobMod
 		
 		// ajout des achievements
 		
-		//installModAch = new Achievement(887, "installModAch", -2, 0, Item.paper, null).registerAchievement();
+		installModAch = new Achievement(887, "installModAch", -2, 0, Item.paper, null).registerAchievement();
 		killBobAch = new Achievement(888, "killBobAch", -4, 0, Block.cobblestone, AchievementList.openInventory).registerAchievement();
 		killFantaAch = new Achievement(889, "killFantaAch", -6, 0, Item.swordWood, AchievementList.openInventory).registerAchievement();
 		floodAch = new Achievement(891, "floodAch", -8, 0, Item.bucketLava, AchievementList.openInventory).registerAchievement();
@@ -268,9 +267,8 @@ public class FantaBobMod
 	
     private static void addAchievementLocalizations()
     {
-    	//addAchievementName("installModAch", "Youtuber");
-    	//addAchievementDesc("installModAch", "Installer le mod FantaBobShow");
-    	
+    	addAchievementName("installModAch", "Youtuber");
+    	addAchievementDesc("installModAch", "Installer le mod FantaBobShow");
     	addAchievementName("killBobAch", "Bob Lennon Hater");
     	addAchievementDesc("killBobAch", "Tuez Bob Lennon");
     	addAchievementName("killFantaAch", "Spirou");
@@ -310,10 +308,4 @@ public class FantaBobMod
 	{
 	        LanguageRegistry.instance().addStringLocalization("achievement." + ach + ".desc", "en_US", desc);
 	}
-
-	/*
-	 * public boolean onTickInGame(float tick, Minecraft minecraft) {
-	 * minecraft.thePlayer.triggerAchievement(installModAch); return true; }
-	 */
-
 }

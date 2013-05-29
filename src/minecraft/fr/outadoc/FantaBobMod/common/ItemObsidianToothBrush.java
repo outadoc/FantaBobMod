@@ -22,7 +22,7 @@ public class ItemObsidianToothBrush extends Item
 	public ItemStack onItemRightClick(ItemStack itemstack, World world, EntityPlayer entityplayer)
 	{
 		world.playSoundAtEntity(entityplayer, "fantabob.toothbrush", 1, 1);
-		FMLClientHandler.instance().getClient().thePlayer.triggerAchievement(FantaBobMod.brushTeethAch);
+		entityplayer.triggerAchievement(FantaBobMod.brushTeethAch);
 		return itemstack;
 	}
 	
