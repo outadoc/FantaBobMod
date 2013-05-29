@@ -91,13 +91,13 @@ public class FantaBobMod
 	@PreInit
 	public void preload(FMLPreInitializationEvent event)
 	{
+		FBMlog.setParent(FMLLog.getLogger());
 		Side side = FMLCommonHandler.instance().getEffectiveSide();
 		if(side == Side.CLIENT)
 		{
-		      MinecraftForge.EVENT_BUS.register(new FTMEventSound());
+		      MinecraftForge.EVENT_BUS.register(new FTMEventSound());      
 		}
 		
-		FBMlog.setParent(FMLLog.getLogger());
 		//config
 		Configuration cfg = new Configuration(event.getSuggestedConfigurationFile());
 		cfg.load();
