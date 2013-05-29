@@ -246,7 +246,7 @@ public class FantaBobMod
 		
 		// ajout des achievements
 		
-		installModAch = new Achievement(887, "installModAch", -2, 0, Item.paper, null).registerAchievement();
+		//installModAch = new Achievement(887, "installModAch", -2, 0, Item.paper, null).registerAchievement();
 		killBobAch = new Achievement(888, "killBobAch", -4, 0, Block.cobblestone, AchievementList.openInventory).registerAchievement();
 		killFantaAch = new Achievement(889, "killFantaAch", -6, 0, Item.swordWood, AchievementList.openInventory).registerAchievement();
 		floodAch = new Achievement(891, "floodAch", -8, 0, Item.bucketLava, AchievementList.openInventory).registerAchievement();
@@ -267,8 +267,8 @@ public class FantaBobMod
 	
     private static void addAchievementLocalizations()
     {
-    	addAchievementName("installModAch", "Youtuber");
-    	addAchievementDesc("installModAch", "Installer le mod FantaBobShow");
+    	//addAchievementName("installModAch", "Youtuber");
+    	//addAchievementDesc("installModAch", "Installer le mod FantaBobShow");
     	addAchievementName("killBobAch", "Bob Lennon Hater");
     	addAchievementDesc("killBobAch", "Tuez Bob Lennon");
     	addAchievementName("killFantaAch", "Spirou");

@@ -15,7 +15,7 @@ public class EntityBotlennon extends EntityMob
 	public EntityBotlennon(World world)
 	{
 		super(world);
-		texture = "/mods/FantaBobMod/Textures/Mobs/botlennon.png";
+		texture = "/mods/FantaBobMod/textures/mobs/botlennon.png";
 	}
 
 	protected int getDropItemId()

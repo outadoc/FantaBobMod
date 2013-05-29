@@ -18,7 +18,7 @@ public class EntityBob extends EntityCreature
 	public EntityBob(World world) 
 	{
 		super(world);
-		texture = "/mods/FantaBobMod/Textures/Mobs/bob.png";
+		texture = "/mods/FantaBobMod/textures/mobs/bob.png";
 		attackStrength = 4;
 		hasPlayedBurnSound = false;
 		isImmuneToFire = FantaBobMod.isImmuneToFire;

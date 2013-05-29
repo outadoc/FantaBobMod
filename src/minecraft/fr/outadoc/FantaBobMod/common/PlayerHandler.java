@@ -9,7 +9,7 @@ public class PlayerHandler implements IPlayerTracker
 	@Override
 	public void onPlayerLogin(EntityPlayer player)
 	{
-		player.triggerAchievement(FantaBobMod.installModAch);
+		//player.triggerAchievement(FantaBobMod.installModAch);
 	}
 
 	@Override

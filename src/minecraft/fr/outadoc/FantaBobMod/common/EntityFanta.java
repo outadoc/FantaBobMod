@@ -14,7 +14,7 @@ public class EntityFanta extends EntityCreature
 	public EntityFanta(World world) 
 	{
 		super(world);
-		texture = "/mods/FantaBobMod/Textures/Mobs/fanta.png";
+		texture = "/mods/FantaBobMod/textures/mobs/fanta.png";
 	}
 
 	protected int getDropItemId() 
