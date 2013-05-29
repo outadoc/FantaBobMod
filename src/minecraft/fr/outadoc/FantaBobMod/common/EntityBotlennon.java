@@ -1,8 +1,5 @@
 package fr.outadoc.FantaBobMod.common;
 
-import java.util.Calendar;
-
-import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
@@ -12,7 +9,6 @@ import net.minecraft.stats.Achievement;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldProviderHell;
 
 public class EntityBotlennon extends EntityMob
 {
