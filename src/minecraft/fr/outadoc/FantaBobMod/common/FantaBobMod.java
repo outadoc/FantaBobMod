@@ -33,7 +33,7 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.relauncher.Side;
 import fr.outadoc.FantaBobMod.client.FTMEventSound;
 
-@Mod(modid = "FantaBobMod", name = "Fanta Bob Mod", version = "2.0.0")
+@Mod(modid = "FantaBobMod", name = "Fanta Bob Mod", version = "2.0.1")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
 public class FantaBobMod
 {
