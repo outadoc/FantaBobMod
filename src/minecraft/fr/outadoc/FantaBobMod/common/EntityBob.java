@@ -62,10 +62,8 @@ public class EntityBob extends EntityCreature
 			Material material = worldObj.getBlockMaterial((int) entity.posX, (int) entity.posY, (int) entity.posZ);
 			if (material == Material.air && FantaBobMod.isPyromaniac)
 			{
-				worldObj.setBlock((int) entity.posX, (int) entity.posY,
-						(int) entity.posZ, Block.fire.blockID);
-				worldObj.playSoundAtEntity(this, getBurnSound(),
-						getSoundVolume(), 1.0F);
+				worldObj.setBlock((int) entity.posX, (int) entity.posY, (int) entity.posZ, Block.fire.blockID, 0, 2);
+				worldObj.playSoundAtEntity(this, getBurnSound(), getSoundVolume(), 1.0F);
 			}
 			else
 				attackEntityAsMob(entity);
@@ -130,10 +128,10 @@ public class EntityBob extends EntityCreature
 							|| (FantaBobMod.canBurnPlants && material == Material.plants)
 							|| (FantaBobMod.canBurnLeaves && material == Material.leaves))
 					{
-						worldObj.setBlock((int) this.posX + 1, (int) this.posY, (int) this.posZ, Block.fire.blockID);
+						worldObj.setBlock((int) this.posX + 1, (int) this.posY, (int) this.posZ, Block.fire.blockID, 0, 2);
 						if (!hasPlayedBurnSound)
 						{
-							worldObj.playSoundAtEntity(this, getBurnSound(), getSoundVolume(), 1.0F);
+							worldObj.playSoundAtEntity(this, getBurnSound(), getSoundVolume(), 1.0F); 
 							hasPlayedBurnSound = true;
 						}
 					}
