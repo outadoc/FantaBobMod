@@ -77,7 +77,7 @@ public class FTMEventSound
             
             if (!Magabond.exists())
             {
-            	downloadsounds("http://dl.mcnanotech.fr/robin4002/mods/FantaBobMod/Magabond.ogg");
+            	downloadsounds("http://apps.outadoc.fr/fantabobmod/record_magabond.ogg");
             }
             
             FantaBobMod.FBMlog.info("sound loaded");
