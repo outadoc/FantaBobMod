@@ -133,6 +133,38 @@ public class FantaBobMod
 		magabondRecordID = cfg.getItem("Magabond Record", 8407).getInt();
 		
 		cfg.save();
+		
+		//Items
+        fantaGlasses = new ItemFBMArmor(fantaGlassesID, FBMarmor, 1, 0).setUnlocalizedName("fantaGlasses").setMaxStackSize(64);
+		cobbleTie = new ItemFBMArmor(cobbleTieID, FBMarmor, 1, 1).setUnlocalizedName("cobbleTie");
+		toothBrush = new ItemObsidianToothBrush(toothBrushID).setUnlocalizedName("toothBrush");
+		stampCollection = new ItemStampCollection(stampCollectionID).setUnlocalizedName("stampCollection");
+		bambooSword = new ItemBambooSword(bambooSwordID, EnumToolMaterial.WOOD).setUnlocalizedName("bambooSword");
+		hairPotion = new ItemFBMArmor(hairPotionID, FBMarmor, 1, 0).setUnlocalizedName("hairPotion").setCreativeTab(CreativeTabs.tabMisc);
+		magabondChop = new ItemFBMFood(magabondChopID, 4, 0.1F, true).setPotionEffect(Potion.confusion.id, 20, 0, 0.8F).setUnlocalizedName("magabondChop");
+		magabondRecord = new ItemRecordFantaBob(magabondRecordID, "Magabond", "ATE BITS").setUnlocalizedName("magabondRecord");
+		
+		//Block
+		bouse = new BlockBouse(bouseID).setHardness(0.6F).setResistance(4.0F).setUnlocalizedName("bouse").setStepSound(new StepSound("bouse", 3.0F, 1.0F));
+		
+		// ajout des achievements
+		installModAch = new Achievement(AchievementList.achievementList.size() + 1, "installModAch", -2, 0, Item.paper, null).registerAchievement();
+		killBobAch = new Achievement(AchievementList.achievementList.size() + 1, "killBobAch", -4, 0, Block.cobblestone, AchievementList.openInventory).registerAchievement();
+		killFantaAch = new Achievement(AchievementList.achievementList.size() + 1, "killFantaAch", -6, 0, Item.swordWood, AchievementList.openInventory).registerAchievement();
+		floodAch = new Achievement(AchievementList.achievementList.size() + 1, "floodAch", -8, 0, Item.bucketLava, AchievementList.openInventory).registerAchievement();
+		killJeanKevinAch = new Achievement(AchievementList.achievementList.size() + 1, "killJeanKevinAch", -10, 0, Item.arrow, AchievementList.openInventory).registerAchievement();
+		killBotlennonAch = new Achievement(AchievementList.achievementList.size() + 1, "killBotlennonAch", -12, 0, Item.ingotIron, AchievementList.openInventory).registerAchievement();
+		getBouseAch = new Achievement(AchievementList.achievementList.size() + 1, "getBouseAch", -14, 0, bouse, AchievementList.openInventory).registerAchievement();
+		brushTeethAch = new Achievement(AchievementList.achievementList.size() + 1, "brushTeethAch", -14, 2, toothBrush, AchievementList.openInventory).registerAchievement();
+		getHairPotionAch = new Achievement(AchievementList.achievementList.size() + 1, "getHairPotionAch", -12, 2, hairPotion, AchievementList.openInventory).registerAchievement();
+		getStampCollectionAch = new Achievement(AchievementList.achievementList.size() + 1, "getStampCollectionAch", -10, 2, stampCollection, AchievementList.openInventory).registerAchievement();
+		getCobbleTieAch = new Achievement(AchievementList.achievementList.size() + 1, "getCobbleTieAch", -8, 2, cobbleTie, AchievementList.openInventory).registerAchievement();
+		getBambooSwordAch = new Achievement(AchievementList.achievementList.size() + 1, "getBambooSwordAch", -6, 2, bambooSword, AchievementList.openInventory).registerAchievement();
+		getMagabondChopAch = new Achievement(AchievementList.achievementList.size() + 1, "getMagabondChopAch", -8, -2, magabondChop, killJeanKevinAch).registerAchievement();
+		craftMagabondRecAch = new Achievement(AchievementList.achievementList.size() + 1, "craftMagabondRecAch", -10, -2, magabondRecord, getMagabondChopAch).registerAchievement();
+		getFantaGlassesAch = new Achievement(AchievementList.achievementList.size() + 1, "getFantaGlassesAch", -6, -2, fantaGlasses, killFantaAch).registerAchievement();
+		
+		addAchievementLocalizations();
 
 	}
 
@@ -162,41 +194,9 @@ public class FantaBobMod
 		
 		//render
 		proxy.addEntityRender();
-
-		//Items
-        fantaGlasses = new ItemFBMArmor(fantaGlassesID, FBMarmor, 1, 0).setUnlocalizedName("fantaGlasses").setMaxStackSize(64);
-		cobbleTie = new ItemFBMArmor(cobbleTieID, FBMarmor, 1, 1).setUnlocalizedName("cobbleTie");
-		toothBrush = new ItemObsidianToothBrush(toothBrushID).setUnlocalizedName("toothBrush");
-		stampCollection = new ItemStampCollection(stampCollectionID).setUnlocalizedName("stampCollection");
-		bambooSword = new ItemBambooSword(bambooSwordID, EnumToolMaterial.WOOD).setUnlocalizedName("bambooSword");
-		hairPotion = new ItemFBMArmor(hairPotionID, FBMarmor, 1, 0).setUnlocalizedName("hairPotion").setCreativeTab(CreativeTabs.tabMisc);
-		magabondChop = new ItemFBMFood(magabondChopID, 4, 0.1F, true).setPotionEffect(Potion.confusion.id, 20, 0, 0.8F).setUnlocalizedName("magabondChop");
-		magabondRecord = new ItemRecordFantaBob(magabondRecordID, "Magabond", "ATE BITS").setUnlocalizedName("magabondRecord");
 		
-		//Block
-		bouse = new BlockBouse(bouseID).setHardness(0.6F).setResistance(4.0F).setUnlocalizedName("bouse").setStepSound(new StepSound("bouse", 3.0F, 1.0F));
-
 		// enregistrement des blocs
 		GameRegistry.registerBlock(bouse, "bouse");
-		
-		// ajout des achievements
-		installModAch = new Achievement(AchievementList.achievementList.size() + 1, "installModAch", -2, 0, Item.paper, null).registerAchievement();
-		killBobAch = new Achievement(AchievementList.achievementList.size() + 1, "killBobAch", -4, 0, Block.cobblestone, AchievementList.openInventory).registerAchievement();
-		killFantaAch = new Achievement(AchievementList.achievementList.size() + 1, "killFantaAch", -6, 0, Item.swordWood, AchievementList.openInventory).registerAchievement();
-		floodAch = new Achievement(AchievementList.achievementList.size() + 1, "floodAch", -8, 0, Item.bucketLava, AchievementList.openInventory).registerAchievement();
-		killJeanKevinAch = new Achievement(AchievementList.achievementList.size() + 1, "killJeanKevinAch", -10, 0, Item.arrow, AchievementList.openInventory).registerAchievement();
-		killBotlennonAch = new Achievement(AchievementList.achievementList.size() + 1, "killBotlennonAch", -12, 0, Item.ingotIron, AchievementList.openInventory).registerAchievement();
-		getBouseAch = new Achievement(AchievementList.achievementList.size() + 1, "getBouseAch", -14, 0, bouse, AchievementList.openInventory).registerAchievement();
-		brushTeethAch = new Achievement(AchievementList.achievementList.size() + 1, "brushTeethAch", -14, 2, toothBrush, AchievementList.openInventory).registerAchievement();
-		getHairPotionAch = new Achievement(AchievementList.achievementList.size() + 1, "getHairPotionAch", -12, 2, hairPotion, AchievementList.openInventory).registerAchievement();
-		getStampCollectionAch = new Achievement(AchievementList.achievementList.size() + 1, "getStampCollectionAch", -10, 2, stampCollection, AchievementList.openInventory).registerAchievement();
-		getCobbleTieAch = new Achievement(AchievementList.achievementList.size() + 1, "getCobbleTieAch", -8, 2, cobbleTie, AchievementList.openInventory).registerAchievement();
-		getBambooSwordAch = new Achievement(AchievementList.achievementList.size() + 1, "getBambooSwordAch", -6, 2, bambooSword, AchievementList.openInventory).registerAchievement();
-		getMagabondChopAch = new Achievement(AchievementList.achievementList.size() + 1, "getMagabondChopAch", -8, -2, magabondChop, killJeanKevinAch).registerAchievement();
-		craftMagabondRecAch = new Achievement(AchievementList.achievementList.size() + 1, "craftMagabondRecAch", -10, -2, magabondRecord, getMagabondChopAch).registerAchievement();
-		getFantaGlassesAch = new Achievement(AchievementList.achievementList.size() + 1, "getFantaGlassesAch", -6, -2, fantaGlasses, killFantaAch).registerAchievement();
-		
-		addAchievementLocalizations();
 		
 		//Handler pour les achivement
 		GameRegistry.registerCraftingHandler(craftHandler);
