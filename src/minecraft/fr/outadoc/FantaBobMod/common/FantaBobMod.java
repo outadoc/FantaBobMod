@@ -180,21 +180,21 @@ public class FantaBobMod
 		GameRegistry.registerBlock(bouse, "bouse");
 		
 		// ajout des achievements
-		installModAch = new Achievement(887, "installModAch", -2, 0, Item.paper, null).registerAchievement();
-		killBobAch = new Achievement(888, "killBobAch", -4, 0, Block.cobblestone, AchievementList.openInventory).registerAchievement();
-		killFantaAch = new Achievement(889, "killFantaAch", -6, 0, Item.swordWood, AchievementList.openInventory).registerAchievement();
-		floodAch = new Achievement(891, "floodAch", -8, 0, Item.bucketLava, AchievementList.openInventory).registerAchievement();
-		killJeanKevinAch = new Achievement(890, "killJeanKevinAch", -10, 0, Item.arrow, AchievementList.openInventory).registerAchievement();
-		killBotlennonAch = new Achievement(892, "killBotlennonAch", -12, 0, Item.ingotIron, AchievementList.openInventory).registerAchievement();
-		getBouseAch = new Achievement(893, "getBouseAch", -14, 0, bouse, AchievementList.openInventory).registerAchievement();
-		brushTeethAch = new Achievement(894, "brushTeethAch", -14, 2, toothBrush, AchievementList.openInventory).registerAchievement();
-		getHairPotionAch = new Achievement(895, "getHairPotionAch", -12, 2, hairPotion, AchievementList.openInventory).registerAchievement();
-		getStampCollectionAch = new Achievement(896, "getStampCollectionAch", -10, 2, stampCollection, AchievementList.openInventory).registerAchievement();
-		getCobbleTieAch = new Achievement(897, "getCobbleTieAch", -8, 2, cobbleTie, AchievementList.openInventory).registerAchievement();
-		getBambooSwordAch = new Achievement(901, "getBambooSwordAch", -6, 2, bambooSword, AchievementList.openInventory).registerAchievement();
-		getMagabondChopAch = new Achievement(898, "getMagabondChopAch", -8, -2, magabondChop, killJeanKevinAch).registerAchievement();
-		craftMagabondRecAch = new Achievement(899, "craftMagabondRecAch", -10, -2, magabondRecord, getMagabondChopAch).registerAchievement();
-		getFantaGlassesAch = new Achievement(900, "getFantaGlassesAch", -6, -2, fantaGlasses, killFantaAch).registerAchievement();
+		installModAch = new Achievement(AchievementList.achievementList.size() + 1, "installModAch", -2, 0, Item.paper, null).registerAchievement();
+		killBobAch = new Achievement(AchievementList.achievementList.size() + 1, "killBobAch", -4, 0, Block.cobblestone, AchievementList.openInventory).registerAchievement();
+		killFantaAch = new Achievement(AchievementList.achievementList.size() + 1, "killFantaAch", -6, 0, Item.swordWood, AchievementList.openInventory).registerAchievement();
+		floodAch = new Achievement(AchievementList.achievementList.size() + 1, "floodAch", -8, 0, Item.bucketLava, AchievementList.openInventory).registerAchievement();
+		killJeanKevinAch = new Achievement(AchievementList.achievementList.size() + 1, "killJeanKevinAch", -10, 0, Item.arrow, AchievementList.openInventory).registerAchievement();
+		killBotlennonAch = new Achievement(AchievementList.achievementList.size() + 1, "killBotlennonAch", -12, 0, Item.ingotIron, AchievementList.openInventory).registerAchievement();
+		getBouseAch = new Achievement(AchievementList.achievementList.size() + 1, "getBouseAch", -14, 0, bouse, AchievementList.openInventory).registerAchievement();
+		brushTeethAch = new Achievement(AchievementList.achievementList.size() + 1, "brushTeethAch", -14, 2, toothBrush, AchievementList.openInventory).registerAchievement();
+		getHairPotionAch = new Achievement(AchievementList.achievementList.size() + 1, "getHairPotionAch", -12, 2, hairPotion, AchievementList.openInventory).registerAchievement();
+		getStampCollectionAch = new Achievement(AchievementList.achievementList.size() + 1, "getStampCollectionAch", -10, 2, stampCollection, AchievementList.openInventory).registerAchievement();
+		getCobbleTieAch = new Achievement(AchievementList.achievementList.size() + 1, "getCobbleTieAch", -8, 2, cobbleTie, AchievementList.openInventory).registerAchievement();
+		getBambooSwordAch = new Achievement(AchievementList.achievementList.size() + 1, "getBambooSwordAch", -6, 2, bambooSword, AchievementList.openInventory).registerAchievement();
+		getMagabondChopAch = new Achievement(AchievementList.achievementList.size() + 1, "getMagabondChopAch", -8, -2, magabondChop, killJeanKevinAch).registerAchievement();
+		craftMagabondRecAch = new Achievement(AchievementList.achievementList.size() + 1, "craftMagabondRecAch", -10, -2, magabondRecord, getMagabondChopAch).registerAchievement();
+		getFantaGlassesAch = new Achievement(AchievementList.achievementList.size() + 1, "getFantaGlassesAch", -6, -2, fantaGlasses, killFantaAch).registerAchievement();
 		
 		addAchievementLocalizations();
 		
